@@ -12,6 +12,10 @@ import Profile from './components/Profile'
 import Contactus from './components/Contactus'
 import Dashboard from './components/Dashboard'
 import Referred_users from './components/Referred_users'
+import Membership from './components/Membership'
+import Wallet from './components/Wallet'
+import Product from './components/Product'
+import Status_Page from './components/Status_Page'
 
 const App = () => {
   return (
@@ -29,6 +33,14 @@ const App = () => {
           <Route path='/Profile' element={<Profile />} />
           <Route path='/Contactus' element={<Contactus />} />
           <Route path='/Referred_users' element={<Referred_users />} />
+          <Route path='/Membership' element={<Membership />} />
+          <Route path='/Wallet' element={<Wallet />} />
+          <Route path='/Product' element={<Product />} />
+          <Route path='/Status_Page' element={<Status_Page />} />
+
+
+
+
 
 
 

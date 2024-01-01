@@ -2,12 +2,20 @@ import React, { useState } from 'react'
 import { MdOutlineEmail } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa";
 import { FaGifts } from "react-icons/fa6";
+import Swal from 'sweetalert';
+
 const Referred_users = () => {
     const [link, setLink] = useState("https://pyple.satisfaction-script.shop/register/9996750411")
     const copyLink = () => {
         let copiedData = document.getElementById("mybox")
         copiedData.select()
         navigator.clipboard.writeText(link)
+        Swal({
+            title: 'Code Copied!',
+            icon: 'success',
+            timer: 1500, // Time in milliseconds
+            buttons: false,
+        });
 
     }
     return (
@@ -35,6 +43,10 @@ const Referred_users = () => {
                     <button className='ms-2 mb-3' onClick={copyLink}>Copy</button>
                 </div>
             </div>
+
+
+
+
 
             <div className='container'>
                 <table class="table mt-5">

@@ -12,6 +12,13 @@
     flex-wrap: wrap;
 }
 
+.bg-gradient-blend {
+    background: linear-gradient(160deg, #ffb7b7 9%, #727272 100%), radial-gradient(100% 100% at 30% 10%, #ffd1d1 0, #260000 100%), linear-gradient(180deg, #0ff 0, #fff 100%), radial-gradient(100% 100% at 70% 0, red 0, #00ffe0 100%), linear-gradient(280deg, #e2eb69 0, #30f 100%);
+    background-blend-mode: screen, overlay, color-burn, color-dodge, normal
+}
+
+
+
 .box {
     width: 300px;
     height: 200px;
@@ -32,4 +39,9 @@
     /* transform: rotate(5deg); */
     background-image: repeating-linear-gradient(40deg, #03b9eb, #550ce8, #9809c4 35%, );
 
+}
+
+.itemres {
+    flex: 0 0 auto;
+    width: 50%;
 }

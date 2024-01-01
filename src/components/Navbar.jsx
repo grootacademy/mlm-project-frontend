@@ -24,6 +24,10 @@ const Navbar = () => {
                                 <Link class="nav-link  text-light" to="/Contactus">Contact us</Link>
                             </li>
 
+                            <li class="nav-item">
+                                <Link class="nav-link  text-light" to="/Membership">Membership</Link>
+                            </li>
+
                         </ul>
                         <div class="d-flex" role="search">
                             {/* <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" /> */}
