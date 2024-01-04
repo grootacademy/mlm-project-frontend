@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import { UserView } from 'src/sections/user/view';
+import AdminMembershipView from 'src/sections/user/view/admin-memberships-view';
 
 // ----------------------------------------------------------------------
 
@@ -8,10 +8,10 @@ export default function AdminMembershipsPage() {
   return (
     <>
       <Helmet>
-        <title> User | Minimal UI </title>
+        <title> User |  </title>
       </Helmet>
 
-      <UserView />
+      <AdminMembershipView />
     </>
   );
 }

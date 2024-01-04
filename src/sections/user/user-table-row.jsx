@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import axios from "axios";
+import Swal from "sweetalert2";
 import PropTypes from 'prop-types';
+import { toast } from 'react-hot-toast';
 
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
-import Popover from '@mui/material/Popover';
-import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
-import MenuItem from '@mui/material/MenuItem';
+import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
+
+import { formatDate } from 'src/utils/format-date';
+
+import { BaseUrl } from "src/Base_url";
 
 import Label from 'src/components/label';
-import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
@@ -24,72 +27,98 @@ export default function UserTableRow({
   role,
   isVerified,
   status,
+  id,
   handleClick,
+  createdOn,
+  getMemberships,
+  productAmount,
+  approvalStatus,
+  transactionId
 }) {
-  const [open, setOpen] = useState(null);
 
-  const handleOpenMenu = (event) => {
-    setOpen(event.currentTarget);
-  };
+  const handleApproval = () => {
+    Swal.fire({
+      title: "Do you want to approve this request?",
+      showDenyButton: true,
+      confirmButtonText: "Approve",
+      denyButtonText: `Don't approve`
+    }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
 
-  const handleCloseMenu = () => {
-    setOpen(null);
-  };
+        try {
+
+          const res = await axios.put(`${BaseUrl}membership/approval`, { membershipId: id }, { withCredentials: true })
+          // window.location.reload();
+          toast.success(res?.data?.message);
+          await getMemberships()
+          // Swal.fire("Saved!", "", "success");
+        } catch (error) {
+          toast.error(error.message);
+        }
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
+  }
+
+  // const handleReject = () => {
+  //   Swal.fire({
+  //     title: "Do you want to reject this request?",
+  //     showDenyButton: true,
+  //     confirmButtonText: "Reject",
+  //     denyButtonText: `Don't Reject`
+  //   }).then(async (result) => {
+  //     /* Read more about isConfirmed, isDenied below */
+  //     if (result.isConfirmed) {
+
+  //       try {
+
+  //         const { data } = await axios.put(`${BaseUrl}membership/approval`, { membershipId: id }, { withCredentials: true })
+  //         await getMemberships()
+  //         toast.success(data.message);
+  //       } catch (error) {
+  //         toast.error(error.message);
+  //       }
+  //     } else if (result.isDenied) {
+  //       Swal.fire("Changes are not saved", "", "info");
+  //     }
+  //   });
+  // }
 
   return (
-    <>
-      <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
-        <TableCell padding="checkbox">
-          <Checkbox disableRipple checked={selected} onChange={handleClick} />
-        </TableCell>
+    <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
+      <TableCell padding="checkbox">
+        <Checkbox disableRipple checked={selected} onChange={handleClick} />
+      </TableCell>
 
-        <TableCell component="th" scope="row" padding="none">
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <Avatar alt={name} src={avatarUrl} />
-            <Typography variant="subtitle2" noWrap>
-              {name}
-            </Typography>
-          </Stack>
-        </TableCell>
+      <TableCell component="th" scope="row" padding="none">
+        <Stack direction="row" alignItems="center" spacing={2}>
+          <Avatar alt={name} src={avatarUrl} />
+          <Typography variant="subtitle2" noWrap>
+            {name}
+          </Typography>
+        </Stack>
+      </TableCell>
 
-        <TableCell>{company}</TableCell>
+      <TableCell>{formatDate(createdOn)}</TableCell>
 
-        <TableCell>{role}</TableCell>
+      <TableCell>₹{productAmount}</TableCell>
 
-        <TableCell align="center">{isVerified ? 'Yes' : 'No'}</TableCell>
+      <TableCell>
+        <Label color={(approvalStatus === 'Pending' && 'error') || 'success'}>{approvalStatus}</Label>
+      </TableCell>
 
-        <TableCell>
-          <Label color={(status === 'banned' && 'error') || 'success'}>{status}</Label>
-        </TableCell>
+      <TableCell align="center">{transactionId}</TableCell>
 
-        <TableCell align="right">
-          <IconButton onClick={handleOpenMenu}>
-            <Iconify icon="eva:more-vertical-fill" />
-          </IconButton>
-        </TableCell>
-      </TableRow>
+      {approvalStatus === "Pending" && <TableCell align="center">
+        <Grid container spacing={1}>
+          <Grid><Label color='success' style={{ cursor: "pointer" }} onClick={handleApproval}>Approve</Label></Grid>
+          {/* <Grid><Label color='error' style={{ cursor: "pointer" }} onClick={handleReject}>Reject</Label></Grid> */}
+        </Grid>
+      </TableCell>}
+    </TableRow >
 
-      <Popover
-        open={!!open}
-        anchorEl={open}
-        onClose={handleCloseMenu}
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        PaperProps={{
-          sx: { width: 140 },
-        }}
-      >
-        <MenuItem onClick={handleCloseMenu}>
-          <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
-          Edit
-        </MenuItem>
-
-        <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
-          <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
-          Delete
-        </MenuItem>
-      </Popover>
-    </>
   );
 }
 
@@ -102,4 +131,10 @@ UserTableRow.propTypes = {
   role: PropTypes.any,
   selected: PropTypes.any,
   status: PropTypes.string,
+  createdOn: PropTypes.string,
+  productAmount: PropTypes.number,
+  approvalStatus: PropTypes.string,
+  transactionId: PropTypes.string,
+  id: PropTypes.string,
+  getMemberships: PropTypes.func,
 };

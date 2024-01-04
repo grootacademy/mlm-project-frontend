@@ -1,8 +1,12 @@
 import { lazy, Suspense } from 'react';
 import { Outlet, Navigate, useRoutes } from 'react-router-dom';
 
+import UserLayout from 'src/layouts/user';
 import DashboardLayout from 'src/layouts/dashboard';
 import AdminWithdrawalsPage from 'src/pages/AdminWithdrawals';
+
+import PublicRoute from 'src/components/PublicRoute';
+import PrivateRoute from 'src/components/PrivateRoute';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
@@ -23,7 +27,9 @@ export default function Router() {
       element: (
         <DashboardLayout>
           <Suspense>
-            <Outlet />
+            <PrivateRoute>
+              <Outlet />
+            </PrivateRoute>
           </Suspense>
         </DashboardLayout>
       ),
@@ -37,32 +43,50 @@ export default function Router() {
       ],
     },
     {
+      element: (
+        <UserLayout>
+          <Suspense>
+            <PrivateRoute>
+              <Outlet />
+            </PrivateRoute>
+          </Suspense>
+        </UserLayout>
+      ),
+      children: [
+        { element: <HomePage />, index: true },
+        { path: 'membershipProducts', element: <MembershipProducts /> },
+        { path: 'myMemberships', element: <MyMemberships /> },
+        // { path: 'products', element: <ProductsPage /> },
+        // { path: 'blog', element: <BlogPage /> },
+      ],
+    },
+    {
       path: 'login',
-      element: <LoginPage />,
+      element: <PublicRoute> <LoginPage /></PublicRoute>,
     },
     {
       path: '/register',
-      element: <RegisterPage />,
+      element: <PublicRoute><RegisterPage /></PublicRoute>,
     },
-    {
-      path: '/',
-      element: <HomePage />,
-    },
-    {
-      path: '/membershipProducts',
-      element: <MembershipProducts />,
-    },
-    {
-      path: '/myMemberships',
-      element: <MyMemberships />,
-    },
+    // {
+    //   path: '/',
+    //   element: <PrivateRoute> <HomePage /></PrivateRoute>,
+    // },
+    // {
+    //   path: '/membershipProducts',
+    //   element: <PrivateRoute> <MembershipProducts /></PrivateRoute>,
+    // },
+    // {
+    //   path: '/myMemberships',
+    //   element: <PrivateRoute> <MyMemberships /> </PrivateRoute>,
+    // },
     {
       path: '404',
-      element: <Page404 />,
+      element: <PublicRoute> <Page404 /></PublicRoute>,
     },
     {
       path: '*',
-      element: <Navigate to="/404" replace />,
+      element: <Navigate to="/" replace />,
     },
   ]);
 

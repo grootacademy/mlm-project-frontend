@@ -1,16 +1,19 @@
 import axios from 'axios';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import toast from 'react-hot-toast';
 // import Button from '@mui/material/Button';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-// import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+// import Divider from '@mui/material/Divider';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { alpha, useTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -29,9 +32,18 @@ export default function RegisterView() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     password: '',
-    cpassword: '',
+    confirmPassword: '',
   });
+
+  // const [errors, setErrors] = useState({
+  //   name: '',
+  //   email: '',
+  //   password: '',
+  //   confirmPassword: '',
+  // });
+
 
 
   const theme = useTheme();
@@ -42,40 +54,104 @@ export default function RegisterView() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    // setErrors((prevErrors) => ({
+    //   ...prevErrors,
+    //   [e.target.name]: '',
+    // }));
   };
+
+
+
+  // const validateForm = () => {
+  //   let isValid = true;
+
+  //   // Name validation (only letters and spaces)
+  //   const nameRegex = /^[a-zA-Z\s]+$/;
+  //   if (!nameRegex.test(formData.name)) {
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       name: 'Invalid name',
+  //     }));
+  //     isValid = false;
+  //   }
+
+  //   // Email validation
+  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   if (!emailRegex.test(formData.email)) {
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       email: 'Invalid email address',
+  //     }));
+  //     isValid = false;
+  //   }
+
+  //   // Password validation (at least 8 characters)
+  //   if (formData.password.length < 8) {
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       password: 'Password must be at least 8 characters',
+  //     }));
+  //     isValid = false;
+  //   }
+
+  //   // Confirm password validation
+  //   if (formData.password !== formData.confirmPassword) {
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       confirmPassword: 'Passwords do not match',
+  //     }));
+  //     isValid = false;
+  //   }
+
+  //   return isValid;
+  // };
 
 
   const handleClick = async (e) => {
-    router.push('/');
 
     e.preventDefault();
 
+    // if (validateForm()) {
+    // Perform registration logic here (e.g., send data to the server)
+
     try {
-      const response = await axios.post(`${BaseUrl}register`, {
-        formData
+
+      if (formData.password !== formData.confirmPassword) {
+        toast.error("Passwords do not match")
+        return
+      }
+
+      const { data } = await axios.post(`${BaseUrl}register`, formData, {
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
       });
 
       // Handle successful signup
-      alert('Registration successful', response.data)
-      console.log();
+      alert('Registration successful', data);
+      router.push('/login');
+
     } catch (error) {
       // Handle signup failure
-      alert('Signup failed', error)
-
+      toast.error(error?.response?.data?.message || error.message)
+      console.log('Signup failed', error);
     }
 
+
+    // }
   };
-
-
-
-
 
 
   const renderForm = (
     <>
-      <Stack spacing={3}>
+      <Stack spacing={3} style={{ color: "red" }}>
         <TextField name="name" label="Name" onChange={handleChange} />
+        {/* <span style={{ color: 'red' }}>{errors.name}</span> */}
         <TextField name="email" label="Email address" onChange={handleChange} />
+        <TextField name="phone" type='tel' maxRows={10} label="Phone No." onChange={handleChange} />
+        {/* <span style={{ color: 'red' }}>{errors.email}</span> */}
 
         <TextField
           name="password"
@@ -92,8 +168,10 @@ export default function RegisterView() {
             ),
           }}
         />
+
+        {/* <span style={{ color: 'red' }}>{errors.password}</span> */}
         <TextField
-          name="password"
+          name="confirmPassword"
           label="Confirm Password"
           type={showPassword ? 'text' : 'password'}
           onChange={handleChange}
@@ -107,6 +185,8 @@ export default function RegisterView() {
             ),
           }}
         />
+        {/* <span style={{ color: 'red' }}>{errors.confirmPassword}</span> */}
+
       </Stack>
 
       <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
@@ -132,10 +212,11 @@ export default function RegisterView() {
     <Box
       sx={{
         ...bgGradient({
-          color: alpha(theme.palette.background.default, 0.9),
+          color: alpha(theme.palette.background.default, 0.5),
           imgUrl: '/assets/background/overlay_4.jpg',
         }),
         height: 1,
+        overflow: "auto"
       }}
     >
       {/* <Logo
@@ -146,13 +227,14 @@ export default function RegisterView() {
         }}
       /> */}
 
-      <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
+      <Stack alignItems="center" justifyContent="center" sx={{ height: 1, overflow: "auto" }}>
         <Card
           sx={{
             p: 5,
             width: 1,
             maxWidth: 420,
           }}
+          style={{ overflow: "auto" }}
         >
           <Typography variant="h4">Register to website</Typography>
 

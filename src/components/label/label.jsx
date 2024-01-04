@@ -28,6 +28,7 @@ const Label = forwardRef(
           ...(endIcon && { pr: 0.75 }),
           ...sx,
         }}
+
         theme={theme}
         {...other}
       >

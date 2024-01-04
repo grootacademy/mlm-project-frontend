@@ -8,7 +8,7 @@ export default function AdminWithdrawalsPage() {
   return (
     <>
       <Helmet>
-        <title> User | Minimal UI </title>
+        <title> User |  </title>
       </Helmet>
 
       <AdminWithdrawals />

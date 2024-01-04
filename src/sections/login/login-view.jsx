@@ -1,49 +1,89 @@
+import axios from 'axios';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Cookies from 'js-cookie';
 import { useState } from 'react';
 // import Button from '@mui/material/Button';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-// import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+// import Divider from '@mui/material/Divider';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { alpha, useTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 
 import { useRouter } from 'src/routes/hooks';
 
+import { BaseUrl } from 'src/Base_url';
 import { bgGradient } from 'src/theme/css';
 
 // import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
+
 
 // ----------------------------------------------------------------------
 
 export default function LoginView() {
   const theme = useTheme();
 
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClick = () => {
-    router.push('/');
+  const handleClick = async () => {
+
+    try {
+      const { data } = await axios.post(`${BaseUrl}login`, formData, {
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+
+      Cookies.set("token", data.token)
+
+      if (data.user.role === 'admin') {
+        router.push('/admin');
+      } else {
+        router.push('/');
+      }
+
+      // Store the token in your app's state or local storage for further use
+    } catch (error) {
+
+      alert('Login Error:', error.message)
+
+      // Handle login error, e.g., display an error message to the user
+    }
+
+
   };
 
   const renderForm = (
     <>
 
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+        <TextField name="email" onChange={handleChange} label="Email address" />
 
         <TextField
           name="password"
           label="Password"
           type={showPassword ? 'text' : 'password'}
+          onChange={handleChange}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -79,7 +119,7 @@ export default function LoginView() {
     <Box
       sx={{
         ...bgGradient({
-          color: alpha(theme.palette.background.default, 0.9),
+          color: alpha(theme.palette.background.default, 0.5),
           imgUrl: '/assets/background/overlay_4.jpg',
         }),
         height: 1,

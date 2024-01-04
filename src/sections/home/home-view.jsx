@@ -1,5 +1,6 @@
 
 import Swal from 'sweetalert2';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
@@ -16,6 +17,7 @@ import AppWidgetSummary from '../overview/app-widget-summary';
 
 export default function HomeView() {
   const theme = useTheme();
+
 
   const handleInviteFriend = () => {
     console.log("first")
@@ -38,46 +40,6 @@ export default function HomeView() {
     })
   }
 
-  // const renderForm = (
-  //   <>
-  //     <Stack spacing={3}>
-  //       <TextField name="email" label="Email address" />
-
-  //       <TextField
-  //         name="password"
-  //         label="Password"
-  //         type={showPassword ? 'text' : 'password'}
-  //         InputProps={{
-  //           endAdornment: (
-  //             <InputAdornment position="end">
-  //               <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-  //                 <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-  //               </IconButton>
-  //             </InputAdornment>
-  //           ),
-  //         }}
-  //       />
-  //     </Stack>
-
-  //     <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
-  //       <Link variant="subtitle2" underline="hover">
-  //         Forgot password?
-  //       </Link>
-  //     </Stack>
-
-  //     <LoadingButton
-  //       fullWidth
-  //       size="large"
-  //       type="submit"
-  //       variant="contained"
-  //       color="inherit"
-  //       onClick={handleClick}
-  //     >
-  //       Login
-  //     </LoadingButton>
-  //   </>
-  // );
-
   return (
 
     <Box
@@ -90,9 +52,14 @@ export default function HomeView() {
       }}
     >
       <Container>
-        <Typography paddingTop="50px" variant="h4" sx={{ mb: 5 }}>
-          Hi, Welcome back 👋
-        </Typography>
+        <Grid container justifyContent="space-between" alignItems="center">
+
+          <Typography paddingTop="50px" variant="h4" sx={{ mb: 5 }}>
+            Hi, Welcome back 👋
+          </Typography>
+
+          {/* <Button variant="contained" onClick={handleLogout} color='error'>Logout</Button> */}
+        </Grid>
 
         <Grid container spacing={3}>
           <Grid xs={12} sm={6} md={2}>
@@ -110,7 +77,7 @@ export default function HomeView() {
             <Link to='/membershipProducts'>
               <AppWidgetSummary
                 title="Let's take a look at all products."
-                total="All Products"
+                total="Membership Plans"
                 color="success"
                 icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
               />

@@ -8,7 +8,7 @@ export default function MyMembershipPage() {
   return (
     <>
       <Helmet>
-        <title> Login | Minimal UI </title>
+        <title> Login |  </title>
       </Helmet>
 
       <MyMembershipView />
