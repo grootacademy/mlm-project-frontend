@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable react/button-has-type */
 import * as React from 'react';
 import Cookies from 'js-cookie';
@@ -14,6 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import { TbLogout } from "react-icons/tb";
 
 const pages = [
   { label: 'Membership plans', path: "/membershipProducts" },
@@ -63,7 +65,7 @@ function ResponsiveAppBar() {
   }
 
   return (
-    <AppBar position="static" sx={{
+    <AppBar position="sticky" sx={{
       background: "linear-gradient(to left, #b8a1e5, #5206ea)"
     }}>
       <Container maxWidth="xl">
@@ -145,12 +147,14 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="profile">
+            <Tooltip title="My Account">
               <IconButton sx={{ p: 0 }}>
                 {/* <Avatar /> */}
-                <Link to="/profile"> <button className="btn btn-primary" >Profile</button></Link>
+                <Link to="/profile"> <button className="btn btn-primary me-3" >MyAccount</button></Link>
               </IconButton>
             </Tooltip>
+            <button className='p-3 h4  btn-danger' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={() => handleAvatarOptionClick("logout")}> <TbLogout /></button>
+
           </Box>
         </Toolbar>
       </Container>

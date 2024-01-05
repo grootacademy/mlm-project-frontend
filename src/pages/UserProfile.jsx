@@ -1,10 +1,35 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/button-has-type */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FaKey } from "react-icons/fa";
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { BaseUrl } from 'src/Base_url';
+import { CgSoftwareDownload } from "react-icons/cg";
 
 function UserProfile() {
+
+    const [userData, setUserData] = useState();
+
+    useEffect(() => {
+        const headers = {
+            'Content-Type': 'application/json',
+        };
+
+        axios.get(`${BaseUrl}user/profile`, { withCredentials: true, headers })
+            .then(response => {
+                setUserData(response.data);
+
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error fetching user details:', error);
+            });
+    }, []);
+
+    console.log(userData);
     return (
         <div>
             <div className="container">
@@ -23,11 +48,11 @@ function UserProfile() {
                                     <div className="d-flex flex-column align-items-center text-center">
                                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
                                         <div className="mt-3">
-                                            <h4>John Doe</h4>
-                                            <p className="text-secondary mb-1">Full Stack Developer</p>
-                                            <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                                            <button className="btn btn-primary">Follow</button>
-                                            <button className="btn btn-outline-primary">Message</button>
+                                            <h4>{userData?.data?.name}</h4>
+
+                                            <p className="text-muted font-size-sm">{userData?.data?._id}</p>
+                                            {/* <button className="btn btn-primary">Follow</button> */}
+                                            {/* <button className="btn btn-outline-primary">Message</button> */}
                                         </div>
                                     </div>
                                 </div>
@@ -42,6 +67,14 @@ function UserProfile() {
                                         </Link>
 
                                     </li>
+                                    <li>
+                                        <Link to="/">
+
+
+                                            <CgSoftwareDownload className='mt-1 ms-3' />
+                                            <span className="ms-4" style={{ textDecoration: 'none' }}>Install Software</span>
+                                        </Link>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -50,10 +83,10 @@ function UserProfile() {
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-sm-3">
-                                            <h6 className="mb-0">Full Name</h6>
+                                            <h6 className="mb-0"> Name</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            Kenneth Valdez
+                                            {userData?.data?.name}
                                         </div>
                                     </div>
                                     <hr />
@@ -62,7 +95,7 @@ function UserProfile() {
                                             <h6 className="mb-0">Email</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            fip@jukmuh.al
+                                            {userData?.data?.email}
                                         </div>
                                     </div>
                                     <hr />
@@ -71,33 +104,46 @@ function UserProfile() {
                                             <h6 className="mb-0">Phone</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            (239) 816-9029
+                                            {userData?.data?._id}
                                         </div>
                                     </div>
                                     <hr />
-                                    <div className="row">
+                                    {/* <div className="row">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Mobile</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
                                             (320) 380-4539
                                         </div>
+                                    </div> */}
+                                    {/* <hr /> */}
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Total Membership</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            {userData?.data?.totalMemberships
+                                            }
+                                        </div>
                                     </div>
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
-                                            <h6 className="mb-0">Address</h6>
+                                            <h6 className="mb-0">Create at</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            Bay Area, San Francisco, CA
+                                            {
+
+                                                new Date(userData?.data?.createdAt).toLocaleString()
+                                            }
                                         </div>
                                     </div>
-                                    <hr />
-                                    <div className="row">
+                                    {/* <hr /> */}
+                                    {/* <div className="row">
                                         <div className="col-sm-12">
                                             <a className="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
 

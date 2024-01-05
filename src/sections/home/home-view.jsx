@@ -111,7 +111,7 @@ export default function HomeView() {
 
               <AppWidgetSummary
                 title="Invite your friends to join with us"
-                total="Invite Friend"
+                total="Customer support"
                 color="warning"
                 icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
               />
