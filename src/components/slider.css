@@ -1,0 +1,47 @@
+.slider-size {
+    height: 90vh;
+}
+
+.main-box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.bg-gradient-blend {
+    background: linear-gradient(160deg, #ffb7b7 9%, #727272 100%), radial-gradient(100% 100% at 30% 10%, #ffd1d1 0, #260000 100%), linear-gradient(180deg, #0ff 0, #fff 100%), radial-gradient(100% 100% at 70% 0, red 0, #00ffe0 100%), linear-gradient(280deg, #e2eb69 0, #30f 100%);
+    background-blend-mode: screen, overlay, color-burn, color-dodge, normal
+}
+
+
+
+.box {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 .25rem 1.75rem rgba(30, 34, 40, .2) !important;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: repeating-linear-gradient(140deg, #b8a1e5, #550ce8 35%);
+    transition: all;
+    transition-duration: 2s;
+    transform: rotate(0deg);
+}
+
+.box:hover {
+    transform: scale(1.1, 1.1);
+    /* transform: rotate(5deg); */
+    background-image: repeating-linear-gradient(40deg, #03b9eb, #550ce8, #9809c4 35%, );
+
+}
+
+.itemres {
+    flex: 0 0 auto;
+    width: 50%;
+}

@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import * as React from 'react';
 import Cookies from 'js-cookie';
 import { Link, useNavigate } from 'react-router-dom';
@@ -17,7 +18,6 @@ import Typography from '@mui/material/Typography';
 const pages = [
   { label: 'Membership plans', path: "/membershipProducts" },
   { label: 'My memberships', path: "/myMemberships" },
-  // { label: 'Profile', path: "/profile" }
 ];
 
 const settings = [
@@ -64,7 +64,7 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar position="static" sx={{
-      background: "linear-gradient(to right, purple, #c4e8fd)"
+      background: "linear-gradient(to left, #b8a1e5, #5206ea)"
     }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -145,33 +145,12 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar />
+            <Tooltip title="profile">
+              <IconButton sx={{ p: 0 }}>
+                {/* <Avatar /> */}
+                <Link to="/profile"> <button className="btn btn-primary" >Profile</button></Link>
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting.key} onClick={() => handleAvatarOptionClick(setting.key)}>
-                  <Typography textAlign="center">{setting.label}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
           </Box>
         </Toolbar>
       </Container>

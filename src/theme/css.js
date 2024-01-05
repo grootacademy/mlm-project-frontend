@@ -106,9 +106,8 @@ export function bgGradient(props) {
 
   if (imgUrl) {
     return {
-      background: `linear-gradient(${direction}, ${startColor || color}, ${
-        endColor || color
-      }), url(${imgUrl})`,
+      background: `linear-gradient(${direction}, ${startColor || color}, ${endColor || color
+        }), url(${imgUrl})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center center',
@@ -136,7 +135,7 @@ export const hideScroll = {
   x: {
     msOverflowStyle: 'none',
     scrollbarWidth: 'none',
-    overflowX: 'scroll',
+    overflowX: 'visible',
     '&::-webkit-scrollbar': {
       display: 'none',
     },
@@ -144,7 +143,7 @@ export const hideScroll = {
   y: {
     msOverflowStyle: 'none',
     scrollbarWidth: 'none',
-    overflowY: 'scroll',
+    overflowY: 'visible',
     '&::-webkit-scrollbar': {
       display: 'none',
     },

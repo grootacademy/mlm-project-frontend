@@ -15,6 +15,8 @@ export const LoginPage = lazy(() => import('src/pages/login'));
 export const RegisterPage = lazy(() => import('src/pages/register'));
 export const HomePage = lazy(() => import('src/pages/Home'));
 export const MembershipProducts = lazy(() => import('src/pages/MembershipProducts'));
+export const UserProfile = lazy(() => import('src/pages/UserProfile'));
+export const ChangePassword = lazy(() => import('src/pages/ChangePassword'));
 export const MyMemberships = lazy(() => import('src/pages/MyMemberShips'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
@@ -56,6 +58,8 @@ export default function Router() {
         { element: <HomePage />, index: true },
         { path: 'membershipProducts', element: <MembershipProducts /> },
         { path: 'myMemberships', element: <MyMemberships /> },
+        { path: 'profile', element: <UserProfile /> },
+        { path: 'changePassword', element: <ChangePassword /> },
         // { path: 'products', element: <ProductsPage /> },
         // { path: 'blog', element: <BlogPage /> },
       ],

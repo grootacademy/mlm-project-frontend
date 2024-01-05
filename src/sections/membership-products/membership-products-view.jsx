@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from "axios";
@@ -95,14 +96,13 @@ export default function MembershipProductsView() {
 
 
   return (
-
     <Box
       sx={{
         ...bgGradient({
           color: alpha(theme.palette.background.default, 0.9),
           imgUrl: '/assets/background/overlay_4.jpg',
         }),
-        height: 1,
+        height: "100vh",
       }}
     >
       <Container>
@@ -121,7 +121,29 @@ export default function MembershipProductsView() {
                 />
               </Grid>
             ))}
+            <div className="mt-4">
+              <h1>Membership Completion Guide</h1>
+
+              <p>This guide helps you understand when a memberhip can be completed based on certain conditions. </p>
+
+              <p>
+                Here's what it means for you:
+              </p>
+
+              <ul>
+                <li>If your earned amount is between 25% and 50% of the total cost and it's been at least 21 days
+                  since you started, you can complete the transaction.</li>
+                <li>If your earned amount is between 50% and 75% of the total cost and it's been at least 14 days, you can
+                  complete
+                  the transaction.</li>
+                <li>If your earned amount is between 75% and 100% of the total cost and it's been at least 7 days, you can
+                  complete
+                  the transaction.</li>
+                <li>If your earned amount is equal to or greater than the total cost, you can complete the transaction.</li>
+              </ul>
+            </div>
           </Grid>
+
         }{
           showLoader &&
           <Spinner />

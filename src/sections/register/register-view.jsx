@@ -10,21 +10,23 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+// import TextField from '@mui/material/TextField';
+// import IconButton from '@mui/material/IconButton';
+// import Typography from '@mui/material/Typography';
 // import Divider from '@mui/material/Divider';
-import LoadingButton from '@mui/lab/LoadingButton';
+// import LoadingButton from '@mui/lab/LoadingButton';
 import { alpha, useTheme } from '@mui/material/styles';
-import InputAdornment from '@mui/material/InputAdornment';
+// import InputAdornment from '@mui/material/InputAdornment';
 
 import { useRouter } from 'src/routes/hooks';
 
 import { BaseUrl } from 'src/Base_url';
-import { bgGradient } from 'src/theme/css';
+// import { bgGradient } from 'src/theme/css';
 
 // import Logo from 'src/components/logo';
-import Iconify from 'src/components/iconify';
+// import Iconify from 'src/components/iconify';
+import Label from 'src/components/label';
+import "./registerstyle.css"
 // ----------------------------------------------------------------------
 
 export default function RegisterView() {
@@ -54,6 +56,7 @@ export default function RegisterView() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
 
     // setErrors((prevErrors) => ({
     //   ...prevErrors,
@@ -111,6 +114,7 @@ export default function RegisterView() {
   const handleClick = async (e) => {
 
     e.preventDefault();
+    console.log(formData);
 
     // if (validateForm()) {
     // Perform registration logic here (e.g., send data to the server)
@@ -121,6 +125,7 @@ export default function RegisterView() {
         toast.error("Passwords do not match")
         return
       }
+      console.log("iiiiiiiiiiiii////////////////", formData);
 
       const { data } = await axios.post(`${BaseUrl}register`, formData, {
         headers: {
@@ -146,144 +151,93 @@ export default function RegisterView() {
 
   const renderForm = (
     <>
-      <Stack spacing={3} style={{ color: "red" }}>
-        <TextField name="name" label="Name" onChange={handleChange} />
-        {/* <span style={{ color: 'red' }}>{errors.name}</span> */}
-        <TextField name="email" label="Email address" onChange={handleChange} />
-        <TextField name="phone" type='tel' maxRows={10} label="Phone No." onChange={handleChange} />
-        {/* <span style={{ color: 'red' }}>{errors.email}</span> */}
+      <div style={{ marginTop: "16rem" }} >
+        <h5 className='text-center register mt-5'>Register Now</h5>
+        <div className='signupBox d-flex justify-content-center flex-wrap align-items-center ' >
+          <form className='signusform' >
+            <div className='row'>
 
-        <TextField
-          name="password"
-          label="Password"
-          type={showPassword ? 'text' : 'password'}
-          onChange={handleChange}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
+              <div className='col-md-12 col-sm-12 col-xs-12  text-start'>
+                <div >
+                  <Label htmlFor="name" className="form-label">Name*</Label>
 
-        {/* <span style={{ color: 'red' }}>{errors.password}</span> */}
-        <TextField
-          name="confirmPassword"
-          label="Confirm Password"
-          type={showPassword ? 'text' : 'password'}
-          onChange={handleChange}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-        {/* <span style={{ color: 'red' }}>{errors.confirmPassword}</span> */}
+                  <input type="text" name='name' onChange={handleChange} className=" form-control logininput" placeholder="Name" id="name" aria-describedby="emailHelp" />
+                </div>
 
-      </Stack>
+                <div >
+                  <Label htmlFor="phone" className="form-label">Phone*</Label>
 
-      <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
-        <Link variant="subtitle2" underline="hover">
-          {/* Forgot password? */}
-        </Link>
-      </Stack>
+                  <input type="number" name='phone' onChange={handleChange} className=" form-control logininput" placeholder="Phone" id="phone" aria-describedby="phoneHelp" />
+                </div>
 
-      <LoadingButton
-        fullWidth
-        size="large"
-        type="submit"
-        variant="contained"
-        color="inherit"
-        onClick={handleClick}
-      >
-        Register
-      </LoadingButton>
+
+                <div >
+                  <Label htmlFor="email" className="form-label">Email*</Label>
+
+                  <input type='email' name="email" label="email." onChange={handleChange} className=" form-control logininput" placeholder="email" id="email" aria-describedby="email" />
+                </div>
+
+                <div >
+                  <Label htmlFor="password" className="form-label">Password*</Label>
+                  <input type="password" onChange={handleChange} name='password' placeholder="Password" className="w-100 form-control  logininput" id="password" />
+                </div>
+                <div >
+                  <Label htmlFor="confirmPassword" className="form-label">  confirmPassword*</Label>
+                  <input type="Password" name='confirmPassword' onChange={handleChange} placeholder="confirmPassword" className="w-100 form-control  logininput" id="confirmPassword" />
+                </div>
+
+              </div>
+              <RouterLink to="/login" style={{ color: "#2d0381", cursor: "pointer" }} variant="subtitle2" sx={{ ml: 0.5 }}>
+                Already have an account?
+              </RouterLink>
+              <Link className='text-end forgotbtn fw-normal  ' to='/Forgot' ><RouterLink to='/register'>
+                <Link variant="subtitle2" sx={{ ml: 0.5 }} style={{ color: "#2d0381", cursor: "pointer" }}>
+                  Forgotten Password ?
+                </Link>
+              </RouterLink> </Link>
+
+
+              <center>
+                <button type="submit" onClick={handleClick} className="loginbtn mt-3 w-100 btn ">Register</button>
+              </center>
+            </div>
+
+          </form>
+        </div>
+      </div >
+
+
+
+
+
+
+
+
+
+
     </>
   );
 
   return (
     <Box
       sx={{
-        ...bgGradient({
-          color: alpha(theme.palette.background.default, 0.5),
-          imgUrl: '/assets/background/overlay_4.jpg',
-        }),
+
         height: 1,
-        overflow: "auto"
+        overflow: "visible"
       }}
     >
-      {/* <Logo
-        sx={{
-          position: 'fixed',
-          top: { xs: 16, md: 24 },
-          left: { xs: 16, md: 24 },
-        }}
-      /> */}
 
-      <Stack alignItems="center" justifyContent="center" sx={{ height: 1, overflow: "auto" }}>
+
+      <Stack alignItems="center" justifyContent="center" sx={{ height: 1, overflow: "visible" }}>
         <Card
           sx={{
             p: 5,
             width: 1,
             maxWidth: 420,
           }}
-          style={{ overflow: "auto" }}
+          style={{ overflow: "visible" }}
         >
-          <Typography variant="h4">Register to website</Typography>
 
-          <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            <RouterLink to='/login'>
-
-              <Link to="/login" variant="subtitle2" sx={{ ml: 0.5 }}>
-                Already have an account?
-              </Link>
-            </RouterLink>
-          </Typography>
-
-          {/* <Stack direction="row" spacing={2}>
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:google-fill" color="#DF3E30" />
-            </Button>
-
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:facebook-fill" color="#1877F2" />
-            </Button>
-
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:twitter-fill" color="#1C9CEA" />
-            </Button>
-          </Stack> */}
-
-          {/* <Divider sx={{ my: 3 }}>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              OR
-            </Typography>
-          </Divider> */}
 
           {renderForm}
         </Card>

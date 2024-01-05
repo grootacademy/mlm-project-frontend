@@ -9,13 +9,13 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
+// import TextField from '@mui/material/TextField';
+// import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 // import Divider from '@mui/material/Divider';
-import LoadingButton from '@mui/lab/LoadingButton';
+// import LoadingButton from '@mui/lab/LoadingButton';
 import { alpha, useTheme } from '@mui/material/styles';
-import InputAdornment from '@mui/material/InputAdornment';
+// import InputAdornment from '@mui/material/InputAdornment';
 
 import { useRouter } from 'src/routes/hooks';
 
@@ -24,6 +24,8 @@ import { bgGradient } from 'src/theme/css';
 
 // import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
+import Label from 'src/components/label';
+import "./loginstyle.css"
 
 
 // ----------------------------------------------------------------------
@@ -44,7 +46,9 @@ export default function LoginView() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault()
+    console.log(formData);
 
     try {
       const { data } = await axios.post(`${BaseUrl}login`, formData, {
@@ -76,25 +80,51 @@ export default function LoginView() {
   const renderForm = (
     <>
 
-      <Stack spacing={3}>
-        <TextField name="email" onChange={handleChange} label="Email address" />
 
-        <TextField
-          name="password"
-          label="Password"
-          type={showPassword ? 'text' : 'password'}
-          onChange={handleChange}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Stack>
+      <div >
+        <h5 className='text-center register mt-5'>Login Now</h5>
+        <div className='signupBox d-flex justify-content-center flex-wrap align-items-center ' >
+          <form className='signusform' >
+            <div className='row'>
+
+              <div className='col-md-12 col-sm-12 col-xs-12  text-start'>
+                <div >
+                  <Label htmlFor="email" className="form-label">email*</Label>
+                  <input type="email" name='email' onChange={handleChange} className=" form-control logininput" placeholder="Email" id="email" aria-describedby="emailHelp" />
+                </div>
+
+                <div >
+                  <Label htmlFor="password" className="form-label">Password*</Label>
+                  <input type="password" name='password' onChange={handleChange} placeholder="Password" className="w-100 form-control  logininput" id="password" />
+                </div>
+
+              </div>
+              <Typography variant="body2" sx={{ mb: 2 }}>
+                Don’t have an account?
+                <RouterLink to='/register'>
+                  <Link style={{ color: "#2d0381", cursor: "pointer" }} variant="subtitle2" sx={{ ml: 0.5 }}>
+                    Get started
+                  </Link>
+                </RouterLink>
+              </Typography>
+              <Link className='text-end forgotbtn fw-normal  ' to='/Forgot' ><RouterLink to='/register'>
+                <Link variant="subtitle2" sx={{ ml: 0.5 }} style={{ color: "#2d0381", cursor: "pointer" }}>
+                  Forgotten Password ?
+                </Link>
+              </RouterLink> </Link>
+
+
+              <center>
+                <button type="submit" onClick={handleClick} className="loginbtn mt-3 w-100 btn ">Login</button>
+              </center>
+            </div>
+
+          </form>
+        </div>
+      </div >
+
+
+
 
       <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
         <Link variant="subtitle2" underline="hover">
@@ -102,36 +132,14 @@ export default function LoginView() {
         </Link>
       </Stack>
 
-      <LoadingButton
-        fullWidth
-        size="large"
-        type="submit"
-        variant="contained"
-        color="inherit"
-        onClick={handleClick}
-      >
-        Login
-      </LoadingButton>
+
     </>
   );
 
   return (
     <Box
-      sx={{
-        ...bgGradient({
-          color: alpha(theme.palette.background.default, 0.5),
-          imgUrl: '/assets/background/overlay_4.jpg',
-        }),
-        height: 1,
-      }}
+
     >
-      {/* <Logo
-        sx={{
-          position: 'fixed',
-          top: { xs: 16, md: 24 },
-          left: { xs: 16, md: 24 },
-        }}
-      /> */}
 
       <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
         <Card
@@ -141,55 +149,6 @@ export default function LoginView() {
             maxWidth: 420,
           }}
         >
-          <Typography variant="h4">Sign in to website</Typography>
-
-          <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            Don’t have an account?
-            <RouterLink to='/register'>
-              <Link variant="subtitle2" sx={{ ml: 0.5 }}>
-                Get started
-              </Link>
-            </RouterLink>
-          </Typography>
-
-          {/* <Stack direction="row" spacing={2}>
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:google-fill" color="#DF3E30" />
-            </Button>
-
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:facebook-fill" color="#1877F2" />
-            </Button>
-
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:twitter-fill" color="#1C9CEA" />
-            </Button>
-          </Stack> */}
-
-          {/* <Divider sx={{ my: 3 }}>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              OR
-            </Typography>
-          </Divider> */}
-
           {renderForm}
         </Card>
       </Stack>
