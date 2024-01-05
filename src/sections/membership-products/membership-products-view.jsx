@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-unescaped-entities */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -115,7 +116,11 @@ export default function MembershipProductsView() {
               <Grid xs={12} sm={6} md={4} onClick={() => buyProduct(data._id, data)}>
                 <AppWidgetSummary
                   title={`Product duration: ${data.duration} days`}
-                  total={data.amount}
+                  total={data.amount <= 1000 ? "Bronze" :
+                    data.amount <= 2000 ? "Silver" :
+                      data.amount <= 3000 ? "Platinum" :
+                        data.amount <= 5000 ? "Gold" :
+                          data.amount <= 10000 ? "Diamond" : ""}
                   color="success"
                   icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
                 />

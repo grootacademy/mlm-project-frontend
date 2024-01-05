@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -18,7 +19,7 @@ import AppMemberShipCard from "../overview/app-membership-card";
 
 export default function MyMembershipView() {
   const theme = useTheme();
-
+  const navigate = useNavigate();
   const [memberships, setMemberships] = useState([])
 
   const getMemberships = async () => {
@@ -58,6 +59,9 @@ export default function MyMembershipView() {
     )
   }
 
+  const handleClick = (data) => {
+    navigate('/membershipDetails', { state: { data } });
+  }
   return (
 
     <Box
@@ -77,8 +81,9 @@ export default function MyMembershipView() {
         <Grid container spacing={3} overflow='auto' height="80vh">
 
           {memberships.map(membership => (
-            <Grid xs={12} sm={6} md={6}>
-              <AppMemberShipCard
+            <Grid xs={12} sm={6} md={6} >
+              <AppMemberShipCard onClick={(e) => handleClick(membership)}
+                style={{ cursor: "pointer" }}
                 title={`Membership duration:  ${membership?.product?.duration} days`}
                 total={membership?.product?.amount}
                 color="success"
