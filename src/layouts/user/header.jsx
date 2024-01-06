@@ -153,7 +153,7 @@ function ResponsiveAppBar() {
                 <Link to="/profile"> <button className="btn btn-primary me-3" >MyAccount</button></Link>
               </IconButton>
             </Tooltip>
-            <button className='p-3 h4  btn-danger' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={() => handleAvatarOptionClick("logout")}> <TbLogout /></button>
+            <button className='p-2 h4 rounded-5   btn-danger' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={() => handleAvatarOptionClick("logout")}> <TbLogout /></button>
 
           </Box>
         </Toolbar>

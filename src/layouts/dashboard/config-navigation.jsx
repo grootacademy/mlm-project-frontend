@@ -22,6 +22,11 @@ const navConfig = [
     path: '/admin/withdrawals',
     icon: icon('ic_user'),
   },
+  {
+    title: 'Users',
+    path: '/admin/userList',
+    icon: icon('ic_user'),
+  },
   // {
   //   title: 'product',
   //   path: '/products',

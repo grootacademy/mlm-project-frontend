@@ -51,7 +51,10 @@ export default function MembershipProductsView() {
       product_id: productId,
       transactionId: enteredTransactionId,
       upiId: "",
-      parentReferralCode: refralCode,
+    }
+
+    if (refralCode) {
+      membershipPayload.parentReferralCode = refralCode
     }
 
     try {
@@ -67,8 +70,13 @@ export default function MembershipProductsView() {
       }
     } catch (err) {
 
-      toast.error(err?.response?.data?.message)
-      console.log(err)
+      if (err.response.data.errors.length > 0) {
+        err.response.data.errors.forEach(k => {
+          toast.error(k.msg)
+        })
+      } else {
+        toast.error(err?.response?.data?.message)
+      }
     }
 
 

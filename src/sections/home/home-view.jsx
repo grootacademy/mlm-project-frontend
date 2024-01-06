@@ -1,27 +1,31 @@
 
+import axios from 'axios';
 import Swal from 'sweetalert2';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
-import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 
+import { BaseUrl } from 'src/Base_url';
 import { bgGradient } from 'src/theme/css';
 
-import AppWidgetSummary from '../overview/app-widget-summary';
+import "../../pages/style.css"
 // eslint-disable-next-line perfectionist/sort-imports
 import "../../pages/slider.css"
-import "../../pages/style.css"
+import AppWidgetSummary from '../overview/app-widget-summary';
 
 
 // ----------------------------------------------------------------------
 
 export default function HomeView() {
-  const theme = useTheme();
+  const [wallet, setWallet] = useState({})
 
+  const theme = useTheme();
+  const navigate = useNavigate();
 
   const handleInviteFriend = () => {
     console.log("first")
@@ -43,6 +47,20 @@ export default function HomeView() {
       </div>`,
     })
   }
+
+  const getWallet = async () => {
+    try {
+      const { data } = await axios.get(`${BaseUrl}getuserWallet`, { withCredentials: true })
+      setWallet(data.data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getWallet()
+  }, [])
+
 
   return (
     <div>
@@ -68,18 +86,47 @@ export default function HomeView() {
           </div>
         </div>
 
-
         <Container>
 
           <Grid container spacing={3}>
-            <Grid xs={12} sm={6} md={2}>
+            <Grid xs={12} sm={6} md={2} >
               <AppWidgetSummary
                 title="Wallet"
-                total={1000}
+                total={wallet?.amount || 0}
                 color="success"
                 icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
               />
             </Grid>
+            <Grid xs={12} sm={6} md={2} onClick={() => navigate("/depositHistory")}>
+              <AppWidgetSummary
+                title="Deposit history"
+                color="success"
+                icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+              />
+            </Grid>
+            <Grid xs={12} sm={6} md={2} onClick={() => navigate("/withdrawalHistory")}>
+              <AppWidgetSummary
+                title="Withdawals history"
+                color="success"
+                icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+              />
+            </Grid>
+            <Grid xs={12} sm={6} md={2} onClick={() => navigate("/WithdrawalAmount")}>
+              <AppWidgetSummary
+                title="Create withdrawal request"
+                color="success"
+                icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+              />
+            </Grid>
+            {/* <Grid xs={12} sm={6} md={2}>
+              <Link to='/WithdrawalAmount' style={{ textDecoration: "none", color: "black" }}>
+                <div className='w-100 h-100 bg-light rounded-4 '>
+                  <br />
+                  <img alt="icon" className='ms-3 ' width={60} src="/assets/icons/glass/ic_glass_bag.png" />
+                  <b className=' ms-2'>withdrawal</b>
+                </div>
+              </Link>
+            </Grid> */}
           </Grid>
 
           <Grid container spacing={3}>
@@ -129,11 +176,9 @@ export default function HomeView() {
               </Link>
             </Grid>
 
-
-
           </Grid>
         </Container>
       </Box >
-    </div>
+    </div >
   );
 }

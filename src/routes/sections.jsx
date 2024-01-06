@@ -7,6 +7,10 @@ import AdminWithdrawalsPage from 'src/pages/AdminWithdrawals';
 
 import PublicRoute from 'src/components/PublicRoute';
 import PrivateRoute from 'src/components/PrivateRoute';
+import WalletPage from 'src/pages/DepositHistoryPage';
+import WithDrawalHistoryPage from 'src/pages/WithdrawalHistoryPage';
+import DepositHistoryPage from 'src/pages/DepositHistoryPage';
+import AdminUserList from 'src/pages/AdminUserList';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
@@ -16,6 +20,9 @@ export const RegisterPage = lazy(() => import('src/pages/register'));
 export const HomePage = lazy(() => import('src/pages/Home'));
 export const MembershipProducts = lazy(() => import('src/pages/MembershipProducts'));
 export const UserProfile = lazy(() => import('src/pages/UserProfile'));
+export const WithdrawalAmount = lazy(() => import('src/pages/WithdrawalAmount'));
+export const UserWithdrawHistory = lazy(() => import('src/pages/UserWithdrawHistory'));
+
 export const MembershipDetails = lazy(() => import('src/pages/MembershipDetails'));
 export const ChangePassword = lazy(() => import('src/pages/ChangePassword'));
 export const MyMemberships = lazy(() => import('src/pages/MyMemberShips'));
@@ -41,6 +48,7 @@ export default function Router() {
         { element: <IndexPage />, index: true },
         { path: 'memberships', element: <AdminMembershipsPage /> },
         { path: 'withdrawals', element: <AdminWithdrawalsPage /> },
+        { path: 'userList', element: <AdminUserList /> },
         // { path: 'products', element: <ProductsPage /> },
         // { path: 'blog', element: <BlogPage /> },
       ],
@@ -60,6 +68,10 @@ export default function Router() {
         { path: 'membershipProducts', element: <MembershipProducts /> },
         { path: 'myMemberships', element: <MyMemberships /> },
         { path: 'profile', element: <UserProfile /> },
+        { path: 'WithdrawalAmount', element: <WithdrawalAmount /> },
+        { path: 'UserWithdrawHistory', element: <UserWithdrawHistory /> },
+        { path: 'depositHistory', element: <DepositHistoryPage /> },
+        { path: 'withdrawalHistory', element: <WithDrawalHistoryPage /> },
         { path: 'changePassword', element: <ChangePassword /> },
         { path: 'membershipDetails', element: <MembershipDetails /> },
         // { path: 'products', element: <ProductsPage /> },

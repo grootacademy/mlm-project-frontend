@@ -106,7 +106,7 @@ export default function UserTableRow({
       <TableCell>₹{productAmount}</TableCell>
 
       <TableCell>
-        <Label color={(approvalStatus === 'Pending' && 'error') || 'success'}>{approvalStatus}</Label>
+        <Label color={(approvalStatus === 'Pending' || approvalStatus === 'Rejected' && 'error') || 'success'}>{approvalStatus}</Label>
       </TableCell>
 
       <TableCell align="center">{transactionId}</TableCell>

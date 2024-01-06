@@ -25,13 +25,14 @@ import { bgGradient } from 'src/theme/css';
 // import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
 import Label from 'src/components/label';
+// eslint-disable-next-line perfectionist/sort-imports
 import "./loginstyle.css"
+import toast from 'react-hot-toast';
 
 
 // ----------------------------------------------------------------------
 
 export default function LoginView() {
-  const theme = useTheme();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -48,7 +49,6 @@ export default function LoginView() {
 
   const handleClick = async (e) => {
     e.preventDefault()
-    console.log(formData);
 
     try {
       const { data } = await axios.post(`${BaseUrl}login`, formData, {
@@ -67,9 +67,15 @@ export default function LoginView() {
       }
 
       // Store the token in your app's state or local storage for further use
-    } catch (error) {
+    } catch (err) {
 
-      alert('Login Error:', error.message)
+      if (err.response?.data?.errors?.length > 0) {
+        err.response.data.errors.forEach(k => {
+          toast.error(k.msg)
+        })
+      } else {
+        toast.error(err?.response?.data?.message)
+      }
 
       // Handle login error, e.g., display an error message to the user
     }

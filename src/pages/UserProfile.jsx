@@ -8,6 +8,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { BaseUrl } from 'src/Base_url';
 import { CgSoftwareDownload } from "react-icons/cg";
+import { MdOutlineInstallMobile } from "react-icons/md";
 
 function UserProfile() {
 
@@ -67,12 +68,25 @@ function UserProfile() {
                                         </Link>
 
                                     </li>
+                                    <hr />
                                     <li>
                                         <Link to="/">
 
 
-                                            <CgSoftwareDownload className='mt-1 ms-3' />
+                                            <MdOutlineInstallMobile className='mt-1 ms-3' />
                                             <span className="ms-4" style={{ textDecoration: 'none' }}>Install Software</span>
+                                        </Link>
+                                    </li>
+                                    <hr />
+
+                                    <li>
+                                        <Link to="/withdrawalHistory">
+                                            {/* <CgSoftwareDownload className='mt-1 ms-3' /> */}
+                                            <span className="ms-4" style={{ textDecoration: 'none' }}>Withdraw History</span>
+                                        </Link>
+                                        <Link to="/depositHistory">
+                                            {/* <CgSoftwareDownload className='mt-1 ms-3' /> */}
+                                            <span className="ms-4" style={{ textDecoration: 'none' }}>Deposit History</span>
                                         </Link>
                                     </li>
                                 </ul>
@@ -101,7 +115,7 @@ function UserProfile() {
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
-                                            <h6 className="mb-0">Phone</h6>
+                                            <h6 className="mb-0">User Id</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
                                             {userData?.data?._id}
@@ -117,6 +131,17 @@ function UserProfile() {
                                         </div>
                                     </div> */}
                                     {/* <hr /> */}
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Mobile Number</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            +91-
+                                            {userData?.data?.phone
+                                            }
+                                        </div>
+                                    </div>
+                                    <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Total Membership</h6>
