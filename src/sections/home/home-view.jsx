@@ -1,9 +1,12 @@
+/* eslint-disable react/no-unknown-property */
+/* eslint-disable jsx-a11y/no-distracting-elements */
+/* eslint-disable react/no-unescaped-entities */
 
 import axios from 'axios';
 import Swal from 'sweetalert2';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Link, useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -28,7 +31,6 @@ export default function HomeView() {
   const navigate = useNavigate();
 
   const handleInviteFriend = () => {
-    console.log("first")
     Swal.fire({
       title: "Invite Friends",
       html: `
@@ -77,11 +79,14 @@ export default function HomeView() {
           <div className="row">
             <div className="col-12">
               {/* <div className="img-mask mask-2  mt-5"> */}
-              <img className='rounded-pill' style={{ height: "150px" }} src='\assets\images\Images\about28@2x.jpg' alt="" />
+              <img className='rounded-pill' style={{ height: "150px" }} src='\assets\images\Images\Profile-Avatar-PNG.png' alt="" />
               {/* </div> */}
-              <div className='text-secondary mt-4'>HELLO! I am JULIA</div>
-              <h1 className='display-4 font-weight-bold'>I’m a corporate <i>brand designer</i> based in <br /> New York City.</h1>
-              <p className='text-secondary fw-lighter '>I’m very passionate about the work that I do, and if you are curious you can find my works on <br /> Dribbble, my portfolio on Behance, and my shots on Instagram.</p>
+              <marquee> <h5 className='font-weight-bold'>Daily get 300% return of your investment with in 24 hours & being a part of our dolphin's family</h5></marquee>
+              <p className='text-secondary fw-lighter mb-0'>Our next setup will be organise on 11th january in Indonesia.</p>
+              <p className='text-secondary'>Lucky members are daily awarded with extra additional bonus.</p>
+
+              <marquee scrollAmount="20" behavior="alternate"> <h5 className='font-weight-bold'>Members of singapure doing well</h5></marquee>
+              <p className='text-secondary fw-lighter '>All the members of our family from singapure getting 400% return of there investment.</p>
             </div>
           </div>
         </div>
@@ -141,28 +146,31 @@ export default function HomeView() {
               </Link>
             </Grid>
 
-            <Grid xs={12} sm={6} md={6}>
+            <Grid xs={12} sm={6} md={6} onClick={handleInviteFriend}>
 
-              <Link to="/myMemberships">
-                <AppWidgetSummary
-                  title="Refer your friend and earn a lot"
-                  total="Refer a Friend"
-                  color="info"
-                  icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
-                />
-              </Link>
+              {/* <Link to="/myMemberships"> */}
+              <AppWidgetSummary
+                title="Refer your friend and earn a lot"
+                total="Refer a Friend"
+                color="info"
+                icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
+              />
+              {/* </Link> */}
 
             </Grid>
 
-            <Grid xs={12} sm={6} md={6} onClick={handleInviteFriend}>
+            <Grid xs={12} sm={6} md={6} >
 
-              <AppWidgetSummary
-                title="Invite your friends to join with us"
-                total="Customer support"
-                color="warning"
-                icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
-              />
+              <a href="https://telegram.com" target='_blank' rel="noreferrer">
 
+                <AppWidgetSummary
+                  title="Invite your friends to join with us"
+                  total="Customer support"
+                  color="warning"
+                  icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
+                />
+
+              </a>
             </Grid>
 
             <Grid xs={12} sm={6} md={6}>

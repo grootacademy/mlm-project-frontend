@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/button-has-type */
@@ -11,6 +13,8 @@ import React, { useEffect, useState } from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import DataTable from 'react-data-table-component';
 import { Link, useLocation } from 'react-router-dom';
+
+import { Button } from '@mui/material';
 
 import { formatDate } from 'src/utils/format-date';
 import { daysElapsed } from 'src/utils/daysElapsed';
@@ -30,6 +34,10 @@ export default function MembershipDetails() {
     const receivedData = location.state ? location.state.data : null;
 
     const columns = [
+        {
+            name: 'S. No.',
+            selector: (row, index) => index + 1
+        },
         {
             name: 'Name',
             selector: row => row?.userRef?.name,
@@ -58,6 +66,7 @@ export default function MembershipDetails() {
 
         try {
             await axios.put(`${BaseUrl}membership/complete`, { membershipId: membersDtails._id }, { withCredentials: true })
+            toast.success("Membership completed successfully")
         } catch (error) {
             console.log(error)
             toast.error(error?.response?.data?.message, { duration: 10000 })
@@ -100,9 +109,9 @@ export default function MembershipDetails() {
                             <div>
                                 <b>Total days passed: </b> <span>{daysElapsed(membersDtails.createdOn)}</span>
                             </div>
-                            <div className="text-center"><p className="btn btn-primary mt-3 mb-1">Plan: {membersDtails?.product?.amount}</p></div>
+                            <div className="text-center my-3"><Button variant='outlined' disabled  >Plan: {membersDtails?.product?.amount}</Button></div>
                             {membersDtails.status !== "complete" ? <div className="text-center">
-                                <a className="btn btn-success" href="#" title="Complete membership and get bonus amount" onClick={handleCompleteMembership}>Complete Membership</a></div>
+                                <a className="btn btn-success" title="Complete membership and get bonus amount" onClick={handleCompleteMembership}>Complete Membership</a></div>
                                 :
                                 <div>
                                     <p> Membership is been already completed</p>

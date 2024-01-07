@@ -1,19 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/button-has-type */
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { FaKey } from "react-icons/fa";
-// eslint-disable-next-line perfectionist/sort-imports
-import { RouterLink } from 'src/routes/components';
-// eslint-disable-next-line perfectionist/sort-imports
-import { Typography } from '@mui/material';
-// eslint-disable-next-line perfectionist/sort-imports
-import "./style.css"
 import axios from 'axios';
-import { BaseUrl } from 'src/Base_url';
-import Cookies from 'js-cookie';
+import { useState } from 'react';
 import toast from 'react-hot-toast';
+
+import { BaseUrl } from 'src/Base_url';
+
+import "./style.css";
 
 function ChangePassword() {
     const [oldPassword, setOldPassword] = useState('');
@@ -23,8 +15,6 @@ function ChangePassword() {
     const handleOldPasswordChange = (e) => setOldPassword(e.target.value);
     const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
     const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
     const handleChangePassword = async (e) => {
         e.preventDefault()
         try {
@@ -42,7 +32,7 @@ function ChangePassword() {
                 newPassword
             }
             console.log("object:::::", formData)
-            const { data } = await axios.put(`${BaseUrl}password/reset`, formData, { withCredentials: true }, {
+            await axios.put(`${BaseUrl}password/reset`, formData, { withCredentials: true }, {
                 headers: {
                     'Content-Type': 'application/json',
                     // Add any other headers if needed
@@ -55,7 +45,6 @@ function ChangePassword() {
 
 
         } catch (error) {
-            setErrorMessage(error.response.data.error || 'An error occurred.');
 
             toast.error(error.message)
         }

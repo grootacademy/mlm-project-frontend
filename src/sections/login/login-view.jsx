@@ -14,20 +14,19 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 // import Divider from '@mui/material/Divider';
 // import LoadingButton from '@mui/lab/LoadingButton';
-import { alpha, useTheme } from '@mui/material/styles';
 // import InputAdornment from '@mui/material/InputAdornment';
+
+import toast from 'react-hot-toast';
 
 import { useRouter } from 'src/routes/hooks';
 
 import { BaseUrl } from 'src/Base_url';
-import { bgGradient } from 'src/theme/css';
 
 // import Logo from 'src/components/logo';
-import Iconify from 'src/components/iconify';
 import Label from 'src/components/label';
+
 // eslint-disable-next-line perfectionist/sort-imports
 import "./loginstyle.css"
-import toast from 'react-hot-toast';
 
 
 // ----------------------------------------------------------------------
@@ -45,7 +44,6 @@ export default function LoginView() {
 
   const router = useRouter();
 
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleClick = async (e) => {
     e.preventDefault()
@@ -59,6 +57,7 @@ export default function LoginView() {
       });
 
       Cookies.set("token", data.token)
+      Cookies.set("role", data.user.role)
 
       if (data.user.role === 'admin') {
         router.push('/admin');
@@ -113,11 +112,11 @@ export default function LoginView() {
                   </Link>
                 </RouterLink>
               </Typography>
-              <Link className='text-end forgotbtn fw-normal  ' to='/Forgot' ><RouterLink to='/register'>
+              {/* <Link className='text-end forgotbtn fw-normal  ' to='/Forgot' ><RouterLink to='/register'>
                 <Link variant="subtitle2" sx={{ ml: 0.5 }} style={{ color: "#2d0381", cursor: "pointer" }}>
                   Forgotten Password ?
                 </Link>
-              </RouterLink> </Link>
+              </RouterLink> </Link> */}
 
 
               <center>

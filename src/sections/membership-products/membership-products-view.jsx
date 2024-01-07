@@ -37,15 +37,19 @@ export default function MembershipProductsView() {
       imageHeight: 250,
       text: `Send payment of ₹${buyData?.amount} to above QR code.`,
       input: "text",
+      html: "UPI ID: 9876543210",
       inputLabel: "Enter refral code",
       inputPlaceholder: "Enter refral code of your friend"
     });
-    console.log(refralCode);
 
     const { value: enteredTransactionId } = await Swal.fire({
       input: "text",
       inputLabel: "Enter transaction id",
     });
+
+    if (!enteredTransactionId) {
+      return;
+    }
 
     const membershipPayload = {
       product_id: productId,
@@ -123,12 +127,8 @@ export default function MembershipProductsView() {
             {products?.map((data, index) => (
               <Grid xs={12} sm={6} md={4} onClick={() => buyProduct(data._id, data)}>
                 <AppWidgetSummary
-                  title={`Product duration: ${data.duration} days`}
-                  total={data.amount <= 1000 ? "Bronze" :
-                    data.amount <= 2000 ? "Silver" :
-                      data.amount <= 3000 ? "Platinum" :
-                        data.amount <= 5000 ? "Gold" :
-                          data.amount <= 10000 ? "Diamond" : ""}
+                  title={`₹${data.amount}`}
+                  total={data.name}
                   color="success"
                   icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
                 />

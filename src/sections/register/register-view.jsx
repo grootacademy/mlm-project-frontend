@@ -8,14 +8,12 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 // import TextField from '@mui/material/TextField';
 // import IconButton from '@mui/material/IconButton';
 // import Typography from '@mui/material/Typography';
 // import Divider from '@mui/material/Divider';
 // import LoadingButton from '@mui/lab/LoadingButton';
-import { alpha, useTheme } from '@mui/material/styles';
 // import InputAdornment from '@mui/material/InputAdornment';
 
 import { useRouter } from 'src/routes/hooks';
@@ -26,6 +24,7 @@ import { BaseUrl } from 'src/Base_url';
 // import Logo from 'src/components/logo';
 // import Iconify from 'src/components/iconify';
 import Label from 'src/components/label';
+
 import "./registerstyle.css"
 // ----------------------------------------------------------------------
 
@@ -35,6 +34,7 @@ export default function RegisterView() {
     name: '',
     email: '',
     phone: '',
+    upiId: '',
     password: '',
     confirmPassword: '',
   });
@@ -46,25 +46,16 @@ export default function RegisterView() {
   //   confirmPassword: '',
   // });
 
-
-
-  const theme = useTheme();
-
   const router = useRouter();
-
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
 
     // setErrors((prevErrors) => ({
     //   ...prevErrors,
     //   [e.target.name]: '',
     // }));
   };
-
-
 
   // const validateForm = () => {
   //   let isValid = true;
@@ -125,9 +116,8 @@ export default function RegisterView() {
         toast.error("Passwords do not match")
         return
       }
-      console.log("iiiiiiiiiiiii////////////////", formData);
 
-      const { data } = await axios.post(`${BaseUrl}register`, formData, {
+      await axios.post(`${BaseUrl}register`, formData, {
         headers: {
           'Content-Type': 'application/json',
           // Add any other headers if needed
@@ -135,7 +125,7 @@ export default function RegisterView() {
       });
 
       // Handle successful signup
-      alert('Registration successful', data);
+      toast.success('Registration successful')
       router.push('/login');
 
     } catch (error) {
@@ -143,79 +133,67 @@ export default function RegisterView() {
       toast.error(error?.response?.data?.message || error.message)
       console.log('Signup failed', error);
     }
-
-
     // }
   };
 
-
   const renderForm = (
-    <>
-      <div style={{ marginTop: "16rem" }} >
-        <h5 className='text-center register mt-5'>Register Now</h5>
-        <div className='signupBox d-flex justify-content-center flex-wrap align-items-center ' >
-          <form className='signusform' >
-            <div className='row'>
+    <div style={{ marginTop: "16rem" }} >
+      <h5 className='text-center register mt-5'>Register Now</h5>
+      <div className='signupBox d-flex justify-content-center flex-wrap align-items-center ' >
+        <form className='signusform' >
+          <div className='row'>
 
-              <div className='col-md-12 col-sm-12 col-xs-12  text-start'>
-                <div >
-                  <Label htmlFor="name" className="form-label">Name*</Label>
+            <div className='col-md-12 col-sm-12 col-xs-12  text-start'>
+              <div >
+                <Label htmlFor="name" className="form-label">Name*</Label>
 
-                  <input type="text" name='name' onChange={handleChange} className=" form-control logininput" placeholder="Name" id="name" aria-describedby="emailHelp" />
-                </div>
-
-                <div >
-                  <Label htmlFor="phone" className="form-label">Phone*</Label>
-
-                  <input type="number" name='phone' onChange={handleChange} className=" form-control logininput" placeholder="Phone" id="phone" aria-describedby="phoneHelp" />
-                </div>
-
-
-                <div >
-                  <Label htmlFor="email" className="form-label">Email*</Label>
-
-                  <input type='email' name="email" label="email." onChange={handleChange} className=" form-control logininput" placeholder="email" id="email" aria-describedby="email" />
-                </div>
-
-                <div >
-                  <Label htmlFor="password" className="form-label">Password*</Label>
-                  <input type="password" onChange={handleChange} name='password' placeholder="Password" className="w-100 form-control  logininput" id="password" />
-                </div>
-                <div >
-                  <Label htmlFor="confirmPassword" className="form-label">  confirmPassword*</Label>
-                  <input type="Password" name='confirmPassword' onChange={handleChange} placeholder="confirmPassword" className="w-100 form-control  logininput" id="confirmPassword" />
-                </div>
-
+                <input type="text" name='name' onChange={handleChange} className=" form-control logininput" placeholder="Name" id="name" aria-describedby="emailHelp" />
               </div>
-              <RouterLink to="/login" style={{ color: "#2d0381", cursor: "pointer" }} variant="subtitle2" sx={{ ml: 0.5 }}>
-                Already have an account?
-              </RouterLink>
-              <Link className='text-end forgotbtn fw-normal  ' to='/Forgot' ><RouterLink to='/register'>
-                <Link variant="subtitle2" sx={{ ml: 0.5 }} style={{ color: "#2d0381", cursor: "pointer" }}>
-                  Forgotten Password ?
-                </Link>
-              </RouterLink> </Link>
 
+              <div >
+                <Label htmlFor="phone" className="form-label">Phone*</Label>
+                <input type="number" name='phone' onChange={handleChange} className=" form-control logininput" placeholder="Phone" id="phone" />
+              </div>
 
-              <center>
-                <button type="submit" onClick={handleClick} className="loginbtn mt-3 w-100 btn ">Register</button>
-              </center>
+              <div >
+                <Label htmlFor="upiId" className="form-label">Upi Id*</Label>
+                <input type="text" name='upiId' onChange={handleChange} className=" form-control logininput" placeholder="Upi Id" id="upiId" />
+              </div>
+
+              <div >
+                <Label htmlFor="email" className="form-label">Email*</Label>
+
+                <input type='email' name="email" label="email." onChange={handleChange} className=" form-control logininput" placeholder="email" id="email" aria-describedby="email" />
+              </div>
+
+              <div >
+                <Label htmlFor="password" className="form-label">Password*</Label>
+                <input type="password" onChange={handleChange} name='password' placeholder="Password" className="w-100 form-control  logininput" id="password" />
+              </div>
+              <div >
+                <Label htmlFor="confirmPassword" className="form-label">  confirmPassword*</Label>
+                <input type="Password" name='confirmPassword' onChange={handleChange} placeholder="confirmPassword" className="w-100 form-control  logininput" id="confirmPassword" />
+              </div>
+
             </div>
-
-          </form>
-        </div>
-      </div >
-
-
-
-
-
-
+            <RouterLink to="/login" style={{ color: "#2d0381", cursor: "pointer" }} variant="subtitle2" sx={{ ml: 0.5 }}>
+              Already have an account?
+            </RouterLink>
+            {/* <Link className='text-end forgotbtn fw-normal  ' to='/Forgot' ><RouterLink to='/register'>
+              <Link variant="subtitle2" sx={{ ml: 0.5 }} style={{ color: "#2d0381", cursor: "pointer" }}>
+                Forgotten Password ?
+              </Link>
+            </RouterLink> </Link> */}
 
 
+            <center>
+              <button type="submit" onClick={handleClick} className="loginbtn mt-3 w-100 btn ">Register</button>
+            </center>
+          </div>
 
-
-    </>
+        </form>
+      </div>
+    </div >
   );
 
   return (

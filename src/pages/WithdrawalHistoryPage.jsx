@@ -4,14 +4,19 @@ import React, { useState, useEffect } from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import DataTable from 'react-data-table-component';
 
-import { BaseUrl } from 'src/Base_url';
 import { formatDate } from 'src/utils/format-date';
+
+import { BaseUrl } from 'src/Base_url';
 
 const WithDrawalHistoryPage = () => {
 
     const [withdrawalHistory, setWithDrawalHistory] = useState([])
 
     const columns = [
+        {
+            name: 'S. No.',
+            selector: (row, index) => index + 1
+        },
         {
             name: 'Created On',
             selector: row => formatDate(row?.createdOn),
@@ -25,7 +30,7 @@ const WithDrawalHistoryPage = () => {
         },
         {
             name: 'Approved On',
-            selector: row => row?.approvedOn,
+            selector: row => formatDate(row?.approvedOn),
             sortable: true,
         }
     ]

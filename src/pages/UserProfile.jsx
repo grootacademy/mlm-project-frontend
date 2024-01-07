@@ -1,14 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable react/button-has-type */
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { FaKey } from "react-icons/fa";
 import axios from 'axios';
-import toast from 'react-hot-toast';
-import { BaseUrl } from 'src/Base_url';
-import { CgSoftwareDownload } from "react-icons/cg";
+import { Link } from 'react-router-dom';
+/* eslint-disable react/button-has-type */
+import { useState, useEffect } from 'react';
 import { MdOutlineInstallMobile } from "react-icons/md";
+import { FaKey, FaEdit, FaArrowCircleUp, FaArrowCircleDown } from "react-icons/fa";
+
+import { BaseUrl } from 'src/Base_url';
 
 function UserProfile() {
 
@@ -41,8 +39,7 @@ function UserProfile() {
                             <li className="breadcrumb-item"><Link to="/Profile">User</Link></li>
                         </ol>
                     </nav>
-
-                    <div className="row gutters-sm">
+                    <div className="row gutters-sm ">
                         <div className="col-md-4 mb-3">
                             <div className="card">
                                 <div className="card-body">
@@ -59,33 +56,35 @@ function UserProfile() {
                                 </div>
                             </div>
                             <div className="card mt-3">
-                                <ul className="list-group list-group-flush">
-                                    <li className="list-group-item d-flex" >
-                                        {/* <h6 className="mb-0"><KeyIcon/><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6> */}
+
+                                <ul className="list-group list-group-flush" style={{ listStyle: "none" }}>
+
+                                    <li className="pt-3" >
                                         <Link to="/changePassword">
-                                            <FaKey className='mt-1' />
+                                            <FaKey className='pt-1 ms-3' />
                                             <span className="ms-4" style={{ textDecoration: 'none' }}>Change Password</span>
                                         </Link>
-
                                     </li>
+
                                     <hr />
+
                                     <li>
                                         <Link to="/">
-
-
                                             <MdOutlineInstallMobile className='mt-1 ms-3' />
                                             <span className="ms-4" style={{ textDecoration: 'none' }}>Install Software</span>
                                         </Link>
                                     </li>
                                     <hr />
-
                                     <li>
-                                        <Link to="/withdrawalHistory">
-                                            {/* <CgSoftwareDownload className='mt-1 ms-3' /> */}
+                                        <Link to="/depositHistory">
+                                            <FaArrowCircleDown className='mt-1 ms-3' />
                                             <span className="ms-4" style={{ textDecoration: 'none' }}>Withdraw History</span>
                                         </Link>
+                                    </li>
+                                    <hr />
+                                    <li className='pb-3'>
                                         <Link to="/depositHistory">
-                                            {/* <CgSoftwareDownload className='mt-1 ms-3' /> */}
+                                            <FaArrowCircleUp className='mt-1 ms-3' />
                                             <span className="ms-4" style={{ textDecoration: 'none' }}>Deposit History</span>
                                         </Link>
                                     </li>
@@ -93,6 +92,7 @@ function UserProfile() {
                             </div>
                         </div>
                         <div className="col-md-8">
+
                             <div className="card mb-3">
                                 <div className="card-body">
                                     <div className="row">
@@ -144,7 +144,7 @@ function UserProfile() {
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
-                                            <h6 className="mb-0">Total Membership</h6>
+                                            <h6 className="mb-0">Total Memberships</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
                                             {userData?.data?.totalMemberships
@@ -154,7 +154,16 @@ function UserProfile() {
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
-                                            <h6 className="mb-0">Create at</h6>
+                                            <h6 className="mb-0">UPI Id</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            {userData?.data?.upiId || "-"}
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Registered on</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
                                             {
@@ -171,9 +180,11 @@ function UserProfile() {
                                     </div> */}
                                 </div>
                             </div>
+                            <Link to="/updateProfile" state={{ user: userData?.data }}><button className='btn btn-primary px-3 float-end '><FaEdit /></button></Link>
 
-                            <div className="row gutters-sm">
-                                <div className="col-sm-6 mb-3">
+
+                            {/* <div className="row gutters-sm"> */}
+                            {/* <div className="col-sm-6 mb-3">
                                     <div className="card h-100">
                                         <div className="card-body">
                                             <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">assignment</i>Project Status</h6>
@@ -199,8 +210,8 @@ function UserProfile() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="col-sm-6 mb-3">
+                                </div> */}
+                            {/* <div className="col-sm-6 mb-3">
                                     <div className="card h-100">
                                         <div className="card-body">
                                             <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">assignment</i>Project Status</h6>
@@ -226,13 +237,14 @@ function UserProfile() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                </div> */}
+                            {/* </div> */}
 
 
 
                         </div>
                     </div>
+
 
                 </div>
             </div>

@@ -3,14 +3,15 @@ import { Outlet, Navigate, useRoutes } from 'react-router-dom';
 
 import UserLayout from 'src/layouts/user';
 import DashboardLayout from 'src/layouts/dashboard';
+import AdminUserList from 'src/pages/AdminUserList';
+import AdminAddProduct from 'src/pages/AdminAddProduct';
+import AdminProductList from 'src/pages/AdminProductList';
 import AdminWithdrawalsPage from 'src/pages/AdminWithdrawals';
+import DepositHistoryPage from 'src/pages/DepositHistoryPage';
+import WithDrawalHistoryPage from 'src/pages/WithdrawalHistoryPage';
 
 import PublicRoute from 'src/components/PublicRoute';
 import PrivateRoute from 'src/components/PrivateRoute';
-import WalletPage from 'src/pages/DepositHistoryPage';
-import WithDrawalHistoryPage from 'src/pages/WithdrawalHistoryPage';
-import DepositHistoryPage from 'src/pages/DepositHistoryPage';
-import AdminUserList from 'src/pages/AdminUserList';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
@@ -20,8 +21,9 @@ export const RegisterPage = lazy(() => import('src/pages/register'));
 export const HomePage = lazy(() => import('src/pages/Home'));
 export const MembershipProducts = lazy(() => import('src/pages/MembershipProducts'));
 export const UserProfile = lazy(() => import('src/pages/UserProfile'));
+export const UpdateProfile = lazy(() => import('src/pages/UpdateProfile'));
+
 export const WithdrawalAmount = lazy(() => import('src/pages/WithdrawalAmount'));
-export const UserWithdrawHistory = lazy(() => import('src/pages/UserWithdrawHistory'));
 
 export const MembershipDetails = lazy(() => import('src/pages/MembershipDetails'));
 export const ChangePassword = lazy(() => import('src/pages/ChangePassword'));
@@ -49,6 +51,8 @@ export default function Router() {
         { path: 'memberships', element: <AdminMembershipsPage /> },
         { path: 'withdrawals', element: <AdminWithdrawalsPage /> },
         { path: 'userList', element: <AdminUserList /> },
+        { path: 'productList', element: <AdminProductList /> },
+        { path: 'addProduct', element: <AdminAddProduct /> },
         // { path: 'products', element: <ProductsPage /> },
         // { path: 'blog', element: <BlogPage /> },
       ],
@@ -68,8 +72,9 @@ export default function Router() {
         { path: 'membershipProducts', element: <MembershipProducts /> },
         { path: 'myMemberships', element: <MyMemberships /> },
         { path: 'profile', element: <UserProfile /> },
+        { path: 'updateProfile', element: <UpdateProfile /> },
+
         { path: 'WithdrawalAmount', element: <WithdrawalAmount /> },
-        { path: 'UserWithdrawHistory', element: <UserWithdrawHistory /> },
         { path: 'depositHistory', element: <DepositHistoryPage /> },
         { path: 'withdrawalHistory', element: <WithDrawalHistoryPage /> },
         { path: 'changePassword', element: <ChangePassword /> },

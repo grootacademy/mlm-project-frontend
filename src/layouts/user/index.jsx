@@ -6,23 +6,22 @@ import Header from './header';
 
 export default function UserLayout({ children }) {
 
-  // const [openNav, setOpenNav] = useState(false);
+  // const navigate = useNavigate()
+
+  // useEffect(() => {
+
+  //   if (Cookies.get("role") !== "user") {
+  //     navigate("/admin")
+  //   }
+
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
 
   return (
     <>
       <Header />
       {children}
 
-      {/* <Box
-        sx={{
-          minHeight: 1,
-          display: 'flex',
-          flexDirection: { xs: 'column', lg: 'row' },
-        }}
-      >
-        <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} /> */}
-
-      {/* </Box> */}
     </>
   );
 }

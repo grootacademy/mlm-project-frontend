@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import DataTable from 'react-data-table-component';
 
+import { formatDate } from 'src/utils/format-date';
+
 import { BaseUrl } from 'src/Base_url';
 
 const DepositHistoryPage = () => {
@@ -12,8 +14,12 @@ const DepositHistoryPage = () => {
 
     const columns = [
         {
+            name: 'S. No.',
+            selector: (row, index) => index + 1
+        },
+        {
             name: 'Created On',
-            selector: row => row?.createdOn,
+            selector: row => formatDate(row?.createdOn),
             sortable: true,
         },
         {

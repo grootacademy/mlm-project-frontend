@@ -2,12 +2,12 @@
 /* eslint-disable react/button-has-type */
 import * as React from 'react';
 import Cookies from 'js-cookie';
+import { TbLogout } from "react-icons/tb";
 import { Link, useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import AppBar from '@mui/material/AppBar';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
@@ -15,23 +15,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { TbLogout } from "react-icons/tb";
 
 const pages = [
   { label: 'Membership plans', path: "/membershipProducts" },
   { label: 'My memberships', path: "/myMemberships" },
 ];
 
-const settings = [
-  // { key: 'profile', label: "Profile" },
-  { key: "myMemberships", label: 'My Memberships' },
-  { key: "membershipProducts", label: 'Membership Plans' },
-  { key: "logout", label: 'Logout' }
-];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const navigate = useNavigate()
 
@@ -39,34 +31,19 @@ function ResponsiveAppBar() {
   //   setAnchorElNav(event.currentTarget);
   // };
 
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   const handleAvatarOptionClick = (key) => {
-
-    console.log("first", key)
-    if (key === 'logout') {
-      Cookies.remove("token")
-      handleCloseNavMenu();
-      navigate("/logout")
-    } else {
-      handleCloseNavMenu();
-      navigate(`/${key}`)
-    }
+    Cookies.remove("token")
+    navigate("/login")
   }
 
   return (
     <AppBar position="sticky" sx={{
-      background: "linear-gradient(to left, #b8a1e5, #5206ea)"
+      background: "linear-gradient(to left, #b8a1e5, #5206ea)",
+      zIndex: 1000
     }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -153,7 +130,7 @@ function ResponsiveAppBar() {
                 <Link to="/profile"> <button className="btn btn-primary me-3" >MyAccount</button></Link>
               </IconButton>
             </Tooltip>
-            <button className='p-2 h4 rounded-5   btn-danger' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={() => handleAvatarOptionClick("logout")}> <TbLogout /></button>
+            <button className='btn btn-danger' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={handleAvatarOptionClick}> <TbLogout /></button>
 
           </Box>
         </Toolbar>

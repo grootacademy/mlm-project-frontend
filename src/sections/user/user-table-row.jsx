@@ -112,10 +112,7 @@ export default function UserTableRow({
       <TableCell align="center">{transactionId}</TableCell>
 
       {approvalStatus === "Pending" && <TableCell align="center">
-        <Grid container spacing={1}>
-          <Grid><Label color='success' style={{ cursor: "pointer" }} onClick={handleApproval}>Approve</Label></Grid>
-          {/* <Grid><Label color='error' style={{ cursor: "pointer" }} onClick={handleReject}>Reject</Label></Grid> */}
-        </Grid>
+        <Grid><Label color='success' style={{ cursor: "pointer" }} onClick={handleApproval}>Approve</Label></Grid>
       </TableCell>}
     </TableRow >
 

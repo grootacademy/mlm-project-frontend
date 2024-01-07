@@ -31,7 +31,7 @@ export default function AppMemberShipCard({ title, total, icon, status, color = 
 
         <div style={{ display: 'flex', gap: "10px" }}>
           <Typography>Membership Amount:</Typography>
-          <Typography variant="h6" display='inline'>₹1000</Typography>
+          <Typography variant="h6" display='inline'>{total}</Typography>
         </div>
         {approvalStatus === "Approved" && <div style={{ display: 'flex', gap: "10px" }}>
           <Typography> Status:</Typography>

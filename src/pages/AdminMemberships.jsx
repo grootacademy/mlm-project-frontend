@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import AdminMembershipView from 'src/sections/user/view/admin-memberships-view';
+import AdminMembershipList from './AdminMembershipList';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ export default function AdminMembershipsPage() {
         <title> User |  </title>
       </Helmet>
 
-      <AdminMembershipView />
+      <AdminMembershipList />
     </>
   );
 }

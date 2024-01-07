@@ -2,17 +2,18 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from "axios";
 import { useState } from "react";
-import "./style.css"
-import { BaseUrl } from "src/Base_url";
-import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+
+import { BaseUrl } from "src/Base_url";
+
+import "./style.css";
 
 export default function WithdrawalAmount() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [amount, setAmount] = useState('');
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [response, setResponse] = useState(null);
+    const [response] = useState(null);
 
     const navigate = useNavigate();
 

@@ -23,13 +23,31 @@ const AdminUserList = () => {
             sortable: true,
         },
         {
+            name: 'Phone',
+            selector: row => row?.phone,
+            sortable: true,
+        },
+        {
+            name: 'UPI Id',
+            cell: (row) => (
+                <div >
+                    {row?.upiId}
+                </div>
+            ),
+            sortable: true,
+        },
+        {
             name: 'Email',
             selector: row => row?.email,
             sortable: true,
         },
         {
             name: 'Register On',
-            selector: row => formatDate(row?.createdAt),
+            cell: (row) => (
+                <div >
+                    {formatDate(row?.createdAt)}
+                </div>
+            ),
             sortable: true,
         }
     ]
@@ -49,7 +67,7 @@ const AdminUserList = () => {
     }, [])
 
     return <div>
-        <h3 className='text-center'>Deposit history</h3>
+        <h3 className='text-center'>User List</h3>
         <DataTable columns={columns} pagination data={userList} />
     </div>
 

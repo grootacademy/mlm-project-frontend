@@ -1,3 +1,9 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { DateTime } from 'luxon';
+
 export function formatDate(date) {
-    return `${new Date(date).getDate()}-${new Date(date).getMonth() + 1}-${new Date(date).getFullYear()}`
+
+    const formattedDateTime = DateTime.fromISO(date, { zone: 'Asia/Kolkata' })
+        .toLocaleString(DateTime.DATETIME_MED);
+    return formattedDateTime;
 }

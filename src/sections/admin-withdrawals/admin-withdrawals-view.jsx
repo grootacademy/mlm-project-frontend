@@ -43,8 +43,26 @@ const AdminWithdrawalsView = () => {
 
   const columns = [
     {
+      name: 'S. No.',
+      selector: (row, index) => index + 1
+    },
+    {
       name: 'User Name',
       selector: row => row?.createdBy?.name,
+      sortable: true,
+    },
+    {
+      name: 'Upi Id.',
+      cell: (row) => (
+        <div >
+          {row.createdBy?.upiId}
+        </div>
+      ),
+      sortable: true,
+    },
+    {
+      name: 'Mobile No.',
+      selector: row => row?.createdBy?.phone,
       sortable: true,
     },
     {
@@ -55,7 +73,11 @@ const AdminWithdrawalsView = () => {
     {
       name: 'Created On',
       // eslint-disable-next-line no-unsafe-optional-chaining
-      selector: row => formatDate(row?.createdOn),
+      cell: (row) => (
+        <div >
+          {formatDate(row?.createdOn)}
+        </div>
+      ),
       sortable: true,
     },
 
