@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
+import { Button } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import { alpha, useTheme } from '@mui/material/styles';
@@ -85,7 +86,7 @@ export default function HomeView() {
               <p className='text-secondary fw-lighter mb-0'>Our next setup will be organise on 11th january in Indonesia.</p>
               <p className='text-secondary'>Lucky members are daily awarded with extra additional bonus.</p>
 
-              <marquee scrollAmount="20" behavior="alternate"> <h5 className='font-weight-bold'>Members of singapure doing well</h5></marquee>
+              <h5 className='font-weight-bold'>Members of singapure doing well</h5>
               <p className='text-secondary fw-lighter '>All the members of our family from singapure getting 400% return of there investment.</p>
             </div>
           </div>
@@ -93,7 +94,7 @@ export default function HomeView() {
 
         <Container>
 
-          <Grid container spacing={3}>
+          <Grid container spacing={3} alignItems="start">
             <Grid xs={12} sm={6} md={2} >
               <AppWidgetSummary
                 title="Wallet"
@@ -102,7 +103,13 @@ export default function HomeView() {
                 icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
               />
             </Grid>
-            <Grid xs={12} sm={6} md={2} onClick={() => navigate("/depositHistory")}>
+            <Grid xs={12} sm={6} md={2} >
+              <Button variant='outlined' color='primary' fullWidth onClick={() => navigate("/depositHistory")}>Deposit history</Button>
+              <Button variant='outlined' color='primary' fullWidth className='my-1' onClick={() => navigate("/withdrawalHistory")}>Withdawals history</Button>
+              <Button variant='outlined' color='primary' fullWidth onClick={() => navigate("/WithdrawalAmount")}>Create withdrawal request</Button>
+            </Grid>
+
+            {/* <Grid xs={12} sm={6} md={2} onClick={() => navigate("/depositHistory")}>
               <AppWidgetSummary
                 title="Deposit history"
                 color="success"
@@ -122,7 +129,7 @@ export default function HomeView() {
                 color="success"
                 icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
               />
-            </Grid>
+            </Grid> */}
             {/* <Grid xs={12} sm={6} md={2}>
               <Link to='/WithdrawalAmount' style={{ textDecoration: "none", color: "black" }}>
                 <div className='w-100 h-100 bg-light rounded-4 '>

@@ -49,8 +49,8 @@ export default function DashboardLayout({ children }) {
 
         <Main>
           <div className='d-flex justify-content-end '>
-            <Button type="button" onClick={handleLogout}> <TbLogout /></Button>
-            {/* <button type="button" className='btn btn-danger' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blue" }} onClick={handleLogout}> User Profile</button> */}
+            <Button variant='outlined' onClick={handleLogout}> <TbLogout size="25" /></Button>
+            <Button variant='outlined' onClick={() => navigate('/profile')} className='mx-1'> User Profile</Button>
           </div>
 
           <div>

@@ -12,6 +12,7 @@ import { BaseUrl } from 'src/Base_url'
 const AdminAddProduct = () => {
     const [amount, setAmount] = useState(null)
     const [name, setName] = useState("")
+    const [upiId, setUpiId] = useState("")
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -34,10 +35,16 @@ const AdminAddProduct = () => {
     const handleAdd = async () => {
         try {
 
+            const product = {
+                name,
+                amount,
+                upiId
+            }
+
             if (location.state?.product) {
-                await axios.put(`${BaseUrl}/product/update/${location.state?.product?._id}`, { amount, name }, { withCredentials: true })
+                await axios.put(`${BaseUrl}/product/update/${location.state?.product?._id}`, product, { withCredentials: true })
             } else {
-                await axios.post(`${BaseUrl}create`, { amount, name }, { withCredentials: true })
+                await axios.post(`${BaseUrl}create`, product, { withCredentials: true })
             }
 
             if (location.state?.product) {
@@ -63,8 +70,9 @@ const AdminAddProduct = () => {
     useEffect(() => {
 
         if (location.state?.product) {
-            setAmount(location.state.product.amount)
-            setName(location.state.product.name)
+            setAmount(location.state.product?.amount)
+            setName(location.state.product?.name)
+            setUpiId(location.state.product?.upiId)
         }
 
     }, [location.state?.product])
@@ -79,16 +87,21 @@ const AdminAddProduct = () => {
                     <form className='border p-4 rounded-4' >
 
                         <div className="form-group">
-                            <label htmlFor="name" style={{ fontSize: "12px" }}>Product Name</label>
+                            <label htmlFor="name" style={{ fontSize: "12px" }}>Name</label>
                             <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" id="name" placeholder="Product name" />
                         </div>
 
                         <div className="form-group mt-2">
-                            <label htmlFor="amount" style={{ fontSize: "12px" }}>Product Amount</label>
+                            <label htmlFor="amount" style={{ fontSize: "12px" }}>Amount</label>
                             <input type="number" value={amount} onChange={handleAmountChange} className="form-control" id="amount" placeholder="Product amount" />
                         </div>
 
-                        <Button type="submit" color='success' variant='contained' className="mt-2" onClick={handleSubmit}>Add</Button>
+                        <div className="form-group mt-2">
+                            <label htmlFor="upiId" style={{ fontSize: "12px" }}>UPI Id</label>
+                            <input type="text" value={upiId} onChange={e => setUpiId(e.target.value)} className="form-control" id="upiId" placeholder="UPI id" />
+                        </div>
+
+                        <Button type="submit" color='success' variant='contained' className="mt-2" onClick={handleSubmit}>{location.state?.product ? "Update" : "Add"}</Button>
                     </form>
                 </div>
             </div>

@@ -32,7 +32,12 @@ const AdminProductList = () => {
         },
         {
             name: 'Amount',
-            selector: row => row?.amount,
+            selector: row => `₹${row?.amount}`,
+            sortable: true,
+        },
+        {
+            name: 'UPI Id',
+            selector: row => <div style={{ whiteSpace: "normal" }}>{row?.upiId}</div>,
             sortable: true,
         },
         {
