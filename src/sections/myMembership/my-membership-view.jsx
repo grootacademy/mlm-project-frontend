@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,7 +25,7 @@ export default function MyMembershipView() {
 
   const getMemberships = async () => {
     try {
-      const { data } = await axios.get(`${BaseUrl}memberships/user`, { withCredentials: true })
+      const { data } = await axios.get(`${BaseUrl}memberships/user`, { headers: { 'Authorization': Cookies.get("token") } })
       setMemberships(data)
     } catch (error) {
       console.log(error)

@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import toast from 'react-hot-toast'
 import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -42,9 +43,9 @@ const AdminAddProduct = () => {
             }
 
             if (location.state?.product) {
-                await axios.put(`${BaseUrl}/product/update/${location.state?.product?._id}`, product, { withCredentials: true })
+                await axios.put(`${BaseUrl}/product/update/${location.state?.product?._id}`, product, { headers: { 'Authorization': Cookies.get("token") } })
             } else {
-                await axios.post(`${BaseUrl}create`, product, { withCredentials: true })
+                await axios.post(`${BaseUrl}create`, product, { headers: { 'Authorization': Cookies.get("token") } })
             }
 
             if (location.state?.product) {

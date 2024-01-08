@@ -7,6 +7,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // eslint-disable-next-line perfectionist/sort-imports
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 // eslint-disable-next-line perfectionist/sort-named-imports
 import React, { useEffect, useState } from 'react'
@@ -65,7 +66,7 @@ export default function MembershipDetails() {
     const handleCompleteMembership = async () => {
 
         try {
-            await axios.put(`${BaseUrl}membership/complete`, { membershipId: membersDtails._id }, { withCredentials: true })
+            await axios.put(`${BaseUrl}membership/complete`, { membershipId: membersDtails._id }, { headers: { 'Authorization': Cookies.get("token") } })
             toast.success("Membership completed successfully")
         } catch (error) {
             console.log(error)
@@ -78,7 +79,7 @@ export default function MembershipDetails() {
         const fetchMembersDetails = async () => {
             try {
                 if (receivedData && receivedData._id) {
-                    const response = await axios.get(`${BaseUrl}membership/${receivedData._id}`, { withCredentials: true });
+                    const response = await axios.get(`${BaseUrl}membership/${receivedData._id}`, { headers: { 'Authorization': Cookies.get("token") } });
                     setMembersDtails(response.data);
                 }
             } catch (error) {

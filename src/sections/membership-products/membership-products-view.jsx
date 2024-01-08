@@ -4,6 +4,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from "axios";
 import Swal from "sweetalert2"
+import Cookies from "js-cookie";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import toast from "react-hot-toast";
 import { useState, useEffect } from "react";
@@ -61,7 +62,7 @@ export default function MembershipProductsView() {
 
     try {
 
-      await axios.post(`${BaseUrl}memberdhip/request`, membershipPayload, { withCredentials: true })
+      await axios.post(`${BaseUrl}memberdhip/request`, membershipPayload, { headers: { 'Authorization': Cookies.get("token") } })
       toast.success("Membership Requested successfully")
 
       if (refralCode) {

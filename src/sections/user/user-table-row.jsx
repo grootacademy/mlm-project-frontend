@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import Cookies from "js-cookie";
 import PropTypes from 'prop-types';
 import { toast } from 'react-hot-toast';
 
@@ -48,7 +49,7 @@ export default function UserTableRow({
 
         try {
 
-          const res = await axios.put(`${BaseUrl}membership/approval`, { membershipId: id }, { withCredentials: true })
+          const res = await axios.put(`${BaseUrl}membership/approval`, { membershipId: id }, { headers: { 'Authorization': Cookies.get("token") } })
           // window.location.reload();
           toast.success(res?.data?.message);
           await getMemberships()
@@ -74,7 +75,7 @@ export default function UserTableRow({
 
   //       try {
 
-  //         const { data } = await axios.put(`${BaseUrl}membership/approval`, { membershipId: id }, { withCredentials: true })
+  //         const { data } = await axios.put(`${BaseUrl}membership/approval`, { membershipId: id }, { headers: { 'Authorization': Cookies.get("token") } })
   //         await getMemberships()
   //         toast.success(data.message);
   //       } catch (error) {

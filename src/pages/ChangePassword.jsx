@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -32,7 +33,7 @@ function ChangePassword() {
                 newPassword
             }
             console.log("object:::::", formData)
-            await axios.put(`${BaseUrl}password/reset`, formData, { withCredentials: true }, {
+            await axios.put(`${BaseUrl}password/reset`, formData, { headers: { 'Authorization': Cookies.get("token") } }, {
                 headers: {
                     'Content-Type': 'application/json',
                     // Add any other headers if needed

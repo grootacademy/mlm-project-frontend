@@ -1,6 +1,7 @@
 // eslint-disable-next-line perfectionist/sort-imports
 // eslint-disable-next-line import/order
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -18,7 +19,7 @@ export default function AppView() {
 
   const getDashboardInfo = async () => {
     try {
-      const { data } = await axios.get(`${BaseUrl}adminDashboard`, { withCredentials: true })
+      const { data } = await axios.get(`${BaseUrl}adminDashboard`, { headers: { 'Authorization': Cookies.get("token") } })
       console.log(data)
       setDashboardInfo(data)
     } catch (error) {

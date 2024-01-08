@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 import { useLocation } from 'react-router-dom';
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -35,7 +36,7 @@ const UpdateProfile = () => {
         // Perform registration logic here (e.g., send data to the server)
         try {
 
-            await axios.put(`${BaseUrl}user/update`, formData, { withCredentials: true });
+            await axios.put(`${BaseUrl}user/update`, formData, { headers: { 'Authorization': Cookies.get("token") } });
 
             // Handle successful signup
             toast.success('Updated successfully')

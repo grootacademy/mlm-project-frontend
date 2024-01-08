@@ -4,6 +4,7 @@
 
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link, useNavigate } from 'react-router-dom';
@@ -53,7 +54,7 @@ export default function HomeView() {
 
   const getWallet = async () => {
     try {
-      const { data } = await axios.get(`${BaseUrl}getuserWallet`, { withCredentials: true })
+      const { data } = await axios.get(`${BaseUrl}getuserWallet`, { headers: { 'Authorization': Cookies.get("token") } })
       setWallet(data.data);
     } catch (error) {
       console.log(error)

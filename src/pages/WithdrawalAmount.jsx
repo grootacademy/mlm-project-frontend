@@ -1,6 +1,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +24,7 @@ export default function WithdrawalAmount() {
 
         try {
             // eslint-disable-next-line no-shadow
-            const response = await axios.post(`${BaseUrl}withdrawal/request`, { amount }, { withCredentials: true }, {
+            const response = await axios.post(`${BaseUrl}withdrawal/request`, { amount }, { headers: { 'Authorization': Cookies.get("token") } }, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

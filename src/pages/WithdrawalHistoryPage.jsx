@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 import React, { useState, useEffect } from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -37,7 +38,7 @@ const WithDrawalHistoryPage = () => {
 
     const getData = async () => {
         try {
-            const { data } = await axios.get(`${BaseUrl}found/withdrawalHistory`, { withCredentials: true })
+            const { data } = await axios.get(`${BaseUrl}found/withdrawalHistory`, { headers: { 'Authorization': Cookies.get("token") } })
             setWithDrawalHistory(data.data)
         } catch (error) {
             toast.error(error?.response?.data?.message)

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 import React, { useState, useEffect } from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -27,7 +28,7 @@ const AdminWithdrawalsView = () => {
 
         try {
 
-          const res = await axios.put(`${BaseUrl}withdrawal/approve`, { withdrawalId: id }, { withCredentials: true })
+          const res = await axios.put(`${BaseUrl}withdrawal/approve`, { withdrawalId: id }, { headers: { 'Authorization': Cookies.get("token") } })
           // window.location.reload();
           toast.success(res?.data?.message);
           await getWithdrawal()
@@ -94,7 +95,7 @@ const AdminWithdrawalsView = () => {
 
   const getWithdrawal = async () => {
     try {
-      const { data } = await axios.get(`${BaseUrl}withdrawal/getWithdrawalList`, { withCredentials: true })
+      const { data } = await axios.get(`${BaseUrl}withdrawal/getWithdrawalList`, { headers: { 'Authorization': Cookies.get("token") } })
       setWithdrawals(data.data)
     } catch (error) {
       toast.error(error?.response?.data?.message)

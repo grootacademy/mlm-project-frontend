@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 import React, { useState, useEffect } from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -56,7 +57,7 @@ const AdminProductList = () => {
 
     const getData = async () => {
         try {
-            const { data } = await axios.get(`${BaseUrl}getProducts`, { withCredentials: true })
+            const { data } = await axios.get(`${BaseUrl}getProducts`, { headers: { 'Authorization': Cookies.get("token") } })
             setProductList(data.products)
         } catch (error) {
             toast.error(error?.response?.data?.message)
@@ -93,7 +94,7 @@ const AdminProductList = () => {
 
     const deleteProduct = async (id) => {
         try {
-            await axios.delete(`${BaseUrl}product/delete/${id}`, { withCredentials: true })
+            await axios.delete(`${BaseUrl}product/delete/${id}`, { headers: { 'Authorization': Cookies.get("token") } })
             toast.success("product deleted successfully")
         } catch (error) {
             toast.error(error?.response?.data?.message)

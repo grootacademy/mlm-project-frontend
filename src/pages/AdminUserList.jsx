@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 import React, { useState, useEffect } from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -54,7 +55,7 @@ const AdminUserList = () => {
 
     const getData = async () => {
         try {
-            const { data } = await axios.get(`${BaseUrl}getAllUsers`, { withCredentials: true })
+            const { data } = await axios.get(`${BaseUrl}getAllUsers`, { headers: { 'Authorization': Cookies.get("token") } })
             console.log(data)
             setUserList(data.users)
         } catch (error) {

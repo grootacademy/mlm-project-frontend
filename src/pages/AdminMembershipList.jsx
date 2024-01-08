@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -60,7 +61,7 @@ const AdminMembershipList = () => {
 
     const getData = async () => {
         try {
-            const { data } = await axios.get(`${BaseUrl}membership/getMemberships`, { withCredentials: true })
+            const { data } = await axios.get(`${BaseUrl}membership/getMemberships`, { headers: { 'Authorization': Cookies.get("token") } })
             setProductList(data)
         } catch (error) {
             toast.error(error?.response?.data?.message)
@@ -80,7 +81,7 @@ const AdminMembershipList = () => {
 
                 try {
 
-                    const res = await axios.put(`${BaseUrl}membership/approval`, { membershipId: id }, { withCredentials: true })
+                    const res = await axios.put(`${BaseUrl}membership/approval`, { membershipId: id }, { headers: { 'Authorization': Cookies.get("token") } })
                     // window.location.reload();
                     toast.success(res?.data?.message);
                     await getData()

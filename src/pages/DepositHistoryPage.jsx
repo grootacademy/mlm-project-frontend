@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 import React, { useState, useEffect } from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -36,7 +37,7 @@ const DepositHistoryPage = () => {
 
     const getData = async () => {
         try {
-            const { data } = await axios.get(`${BaseUrl}found/depositsHistory`, { withCredentials: true })
+            const { data } = await axios.get(`${BaseUrl}found/depositsHistory`, { headers: { 'Authorization': Cookies.get("token") } })
             console.log(data)
             setDepositHistory(data.data)
         } catch (error) {

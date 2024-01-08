@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { toast } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 
@@ -102,7 +103,7 @@ export default function AdminMembershipView() {
 
   const getMemberships = async () => {
     try {
-      const { data } = await axios.get(`${BaseUrl}membership/getMemberships`, { withCredentials: true })
+      const { data } = await axios.get(`${BaseUrl}membership/getMemberships`, { headers: { 'Authorization': Cookies.get("token") } })
       setMemberships(data)
     } catch (error) {
       toast.error(error?.response?.data?.message)
