@@ -9,7 +9,8 @@ import Typography from '@mui/material/Typography';
 
 // ----------------------------------------------------------------------
 
-export default function AppWidgetSummary({ title, total, icon, color = 'primary', sx, ...other }) {
+// eslint-disable-next-line react/prop-types
+export default function AppWidgetSummary({ title, total, icon, color = 'primary', des, sx, ...other }) {
   return (
     <Card
       component={Stack}
@@ -28,9 +29,11 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
       <Stack spacing={0.5}>
         <Typography variant="h4">{total}</Typography>
 
+
         <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
           {title}
         </Typography>
+        <Typography variant="" fontSize={10}>{des}</Typography>
       </Stack>
     </Card>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/button-has-type */
 import * as React from 'react';
@@ -63,7 +64,10 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            <Link to="/" style={{ color: "white" }}>HOME</Link>
+            <Link to="/" style={{ color: "white" }}>
+              <img src='./public/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
+
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -109,11 +113,15 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            <img src='./public/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
+
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
+
               <Link to={page.path} key={page.label}>
+
                 <Button
 
                   onClick={handleCloseNavMenu}

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -40,7 +41,9 @@ export function LoginHeader() {
               textDecoration: 'none',
             }}
           >
-            <Link to="/" style={{ color: "white" }}>LOGO</Link>
+            <Link to="/" style={{ color: "white" }}>
+              <img src='./public/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
