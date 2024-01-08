@@ -137,8 +137,8 @@ export default function RegisterView() {
   };
 
   const renderForm = (
-    <div style={{ marginTop: "16rem" }} >
-      <h5 className='text-center register mt-5'>Register Now</h5>
+    <div >
+      <h5 className='text-center register'>Register Now</h5>
       <div className='signupBox d-flex justify-content-center flex-wrap align-items-center ' >
         <form className='signusform' >
           <div className='row'>
@@ -199,24 +199,18 @@ export default function RegisterView() {
   return (
     <Box
       sx={{
-
-        height: 1,
         overflow: "visible"
       }}
     >
-
-
-      <Stack alignItems="center" justifyContent="center" sx={{ height: 1, overflow: "visible" }}>
+      <Stack alignItems="center" justifyContent="center" >
         <Card
           sx={{
             p: 5,
             width: 1,
-            maxWidth: 420,
+            // maxWidth: 420,
           }}
-          style={{ overflow: "visible" }}
+
         >
-
-
           {renderForm}
         </Card>
       </Stack>

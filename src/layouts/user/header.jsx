@@ -65,7 +65,7 @@ function ResponsiveAppBar() {
             }}
           >
             <Link to="/" style={{ color: "white" }}>
-              <img src='./public/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
+              <img src='/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
 
             </Link>
           </Typography>
@@ -113,7 +113,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            <img src='./public/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
+            <img src='/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
 
           </Typography>
 

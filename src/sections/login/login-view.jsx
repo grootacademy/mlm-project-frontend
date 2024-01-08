@@ -26,8 +26,6 @@ import { BaseUrl } from 'src/Base_url';
 import Label from 'src/components/label';
 
 // eslint-disable-next-line perfectionist/sort-imports
-import "./loginstyle.css"
-
 
 // ----------------------------------------------------------------------
 
@@ -84,8 +82,6 @@ export default function LoginView() {
 
   const renderForm = (
     <>
-
-
       <div >
         <h5 className='text-center register mt-5'>Login Now</h5>
         <div className='signupBox d-flex justify-content-center flex-wrap align-items-center ' >
@@ -142,16 +138,11 @@ export default function LoginView() {
   );
 
   return (
-    <Box
-
-    >
-
-      <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
+    <Box >
+      <Stack alignItems="center" width="1000" justifyContent="center" sx={{ height: 1 }}>
         <Card
           sx={{
-            p: 5,
-            width: 1,
-            maxWidth: 420,
+            p: 3,
           }}
         >
           {renderForm}

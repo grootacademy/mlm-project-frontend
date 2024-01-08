@@ -23,7 +23,7 @@ export function LoginHeader() {
 
   return (
     <AppBar position="static" sx={{
-      background: "linear-gradient(to right, purple, #c4e8fd)"
+      background: "linear-gradient(to left, #b8a1e5, #5206ea)"
     }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -42,7 +42,7 @@ export function LoginHeader() {
             }}
           >
             <Link to="/" style={{ color: "white" }}>
-              <img src='./public/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
+              <img src='/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
             </Link>
           </Typography>
 

@@ -37,15 +37,15 @@ export default function HomeView() {
       html: `
       <div style="display:flex;gap:20px;justify-content:center;padding:30px">
         <a href="https://facebook.com" target="_blank">
-          <image src="../../../public/assets/icons/Facebook_icon.png" height="50px" >
+          <image src="/assets/icons/Facebook_icon.png" height="50px" >
         </a>
         
         <a href="https://instagram.com" target="_blank">
-          <image src="../../../public/assets/icons/Instagram_icon.png" height="50px" >  
+          <image src="/assets/icons/Instagram_icon.png" height="50px" >  
         </a>
 
         <a href="https://twitter.com" target="_blank">  
-          <image src="../../../public/assets/icons/Twitter X Icon.svg" height="50px" >
+          <image src="/assets/icons/Twitter X Icon.svg" height="50px" >
         </a>
       </div>`,
     })
