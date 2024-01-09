@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react-hooks/rules-of-hooks */
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 /* eslint-disable react/button-has-type */
 import { useState, useEffect } from 'react';
@@ -16,9 +17,10 @@ function UserProfile() {
     useEffect(() => {
         const headers = {
             'Content-Type': 'application/json',
+            'Authorization': Cookies.get("token")
         };
 
-        axios.get(`${BaseUrl}user/profile`, { withCredentials: true, headers })
+        axios.get(`${BaseUrl}user/profile`, { headers })
             .then(response => {
                 setUserData(response.data);
 

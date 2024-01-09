@@ -24,6 +24,7 @@ import "../../pages/slider.css"
 import AppWidgetSummary from '../overview/app-widget-summary';
 
 
+
 // ----------------------------------------------------------------------
 
 export default function HomeView() {
@@ -38,15 +39,15 @@ export default function HomeView() {
       html: `
       <div style="display:flex;gap:20px;justify-content:center;padding:30px">
         <a href="https://facebook.com" target="_blank">
-          <image src="/assets/icons/Facebook_icon.png" height="50px" >
+          <image src="/assets/icons/Facebook_icon.png" style="height:50px" >
         </a>
         
         <a href="https://instagram.com" target="_blank">
-          <image src="/assets/icons/Instagram_icon.png" height="50px" >  
+          <image src="/assets/icons/Instagram_icon.png" style="height:50px">  
         </a>
 
         <a href="https://twitter.com" target="_blank">  
-          <image src="/assets/icons/Twitter X Icon.svg" height="50px" >
+          <image src="/assets/icons/Twitter X Icon.svg" style="height:50px">
         </a>
       </div>`,
     })
@@ -64,6 +65,22 @@ export default function HomeView() {
   useEffect(() => {
     getWallet()
   }, [])
+
+
+  const widgetContainerStyle = {
+    fontSize: 'inherit', // Set the default font size
+
+    '@media (max-width: 500px) and (min-width: 300px)': {
+      fontSize: '10px', // Set the font size to 10px for screens between 300px and 500px
+      // Add any other styles as needed
+    },
+  };
+  const buttonStyle = {
+    fontSize: '16px', // Default font size
+    '@media (min-width: 300px) and (max-width: 500px)': {
+      fontSize: '10px', // Font size for screen size between 300px and 500px
+    },
+  };
 
 
   return (
@@ -95,16 +112,17 @@ export default function HomeView() {
 
         <Container>
 
-          <Grid container spacing={3} alignItems="start">
-            <Grid xs={12} sm={6} md={3} >
+          <Grid container spacing={{ xs: 1, sm: 2, md: 3 }} alignItems="start">
+            <Grid xs={6} sm={6} md={3} style={widgetContainerStyle} >
               <AppWidgetSummary
+                sx={buttonStyle}
                 title="Wallet"
                 total={wallet?.amount || 0}
                 color="success"
                 icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
               />
             </Grid>
-            <Grid xs={12} sm={6} md={2} >
+            <Grid xs={6} sm={6} md={2} >
               <Button variant='outlined' color='primary' fullWidth onClick={() => navigate("/depositHistory")}>Deposit history</Button>
               <Button variant='outlined' color='primary' fullWidth className='my-1' onClick={() => navigate("/withdrawalHistory")}>Withdawals history</Button>
               <Button variant='outlined' color='primary' fullWidth onClick={() => navigate("/WithdrawalAmount")}>Create withdrawal request</Button>
@@ -143,9 +161,9 @@ export default function HomeView() {
           </Grid>
 
 
-          <Grid container spacing={5}>
+          <Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>
 
-            <Grid xs={12} sm={6} md={6}>
+            <Grid xs={6} sm={6} md={6}>
               <Link to='/membershipProducts'>
                 <AppWidgetSummary
                   title="Let's take a look at all products."
@@ -156,7 +174,7 @@ export default function HomeView() {
               </Link>
             </Grid>
 
-            <Grid xs={12} sm={6} md={6} onClick={handleInviteFriend}>
+            <Grid xs={6} sm={6} md={6} onClick={handleInviteFriend}>
 
               {/* <Link to="/myMemberships"> */}
               <AppWidgetSummary
@@ -169,7 +187,7 @@ export default function HomeView() {
 
             </Grid>
 
-            <Grid xs={12} sm={6} md={6} >
+            <Grid xs={6} sm={6} md={6} >
 
               <a href="https://telegram.com" target='_blank' rel="noreferrer">
 
@@ -183,7 +201,7 @@ export default function HomeView() {
               </a>
             </Grid>
 
-            <Grid xs={12} sm={6} md={6}>
+            <Grid xs={6} sm={6} md={6}>
               <Link to="/myMemberships">
                 <AppWidgetSummary
                   title="Let's see your all membersips that you have purchased"

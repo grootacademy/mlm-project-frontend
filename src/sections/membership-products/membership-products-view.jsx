@@ -31,7 +31,6 @@ export default function MembershipProductsView() {
   const theme = useTheme();
   const [products, setproducts] = useState()
   const [showLoader, setshowLoader] = useState(false)
-  const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
   const buyProduct = async (productId, buyData) => {
 
@@ -107,15 +106,20 @@ export default function MembershipProductsView() {
     getProductData()
   }, [])
 
-  const toggleDescription = (productId) => {
-    setExpandedDescriptions((prevExpandedDescriptions) => ({
-      ...prevExpandedDescriptions,
-      [productId]: !prevExpandedDescriptions[productId],
-    }));
-  };
+  // const toggleDescription = (productId) => {
+  //   setExpandedDescriptions((prevExpandedDescriptions) => ({
+  //     ...prevExpandedDescriptions,
+  //     [productId]: !prevExpandedDescriptions[productId],
+  //   }));
+  // };
 
-
-
+  const handleReadMore = (description) => {
+    Swal.fire({
+      title: "Product Description",
+      html: `<p style="font-size:14px">${description}</p>`,
+      showConfirmButton: false
+    })
+  }
 
   return (
     <Box
@@ -135,7 +139,7 @@ export default function MembershipProductsView() {
           <Grid container spacing={3}>
             {products?.map((data, index) => (
               <Grid xs={12} sm={6} md={4} >
-                <div className="bg-white shadow rounded-5 " style={{}}>
+                <div className="bg-white shadow rounded-5">
 
 
                   <AppWidgetSummary
@@ -145,7 +149,7 @@ export default function MembershipProductsView() {
                     color="success"
                     // description={data.description}
 
-                    description={expandedDescriptions[data?._id]
+                    description={data.description.length < 200
                       ? data?.description
                       : `${data?.description?.slice(0, 200)}...`
                     }
@@ -153,10 +157,13 @@ export default function MembershipProductsView() {
                     icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
 
                   />
-                  <Button className="ms-3  " color="primary" onClick={() => toggleDescription(data._id)}>
-                    {expandedDescriptions[data._id] ? "Read Less" : "Read More"}
-                  </Button>
-                  <Button className="ms-3 me-3 float-end" variant='outlined' color='primary' onClick={() => buyProduct(data._id, data)}  >Buy now</Button>
+
+                  <div className="p-2">
+                    <Button className="ms-3" variant="outlined" color="primary" onClick={() => handleReadMore(data?.description)}>
+                      Read More
+                    </Button>
+                    <Button className="ms-3 me-3 float-end" variant='outlined' color='primary' onClick={() => buyProduct(data._id, data)}  >Buy now</Button>
+                  </div>
 
                 </div>
               </Grid>
@@ -165,7 +172,6 @@ export default function MembershipProductsView() {
               <h1>Membership Completion Guide</h1>
 
               <p>This guide helps you understand when a memberhip can be completed based on certain conditions. </p>
-
               <p>
                 Here's what it means for you:
               </p>
