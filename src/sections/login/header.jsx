@@ -89,7 +89,7 @@ export function LoginHeader() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            <img src='/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (

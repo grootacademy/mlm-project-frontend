@@ -45,7 +45,6 @@ export default function LoginView() {
 
   const handleClick = async (e) => {
     e.preventDefault()
-
     try {
       const { data } = await axios.post(`${BaseUrl}login`, formData, {
         headers: {
@@ -76,8 +75,6 @@ export default function LoginView() {
 
       // Handle login error, e.g., display an error message to the user
     }
-
-
   };
 
   const renderForm = (

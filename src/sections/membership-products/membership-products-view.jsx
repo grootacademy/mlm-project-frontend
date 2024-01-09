@@ -34,7 +34,7 @@ export default function MembershipProductsView() {
   const buyProduct = async (productId, buyData) => {
 
     const { value: refralCode } = await Swal.fire({
-      text: `Send payment of ₹${buyData?.amount} to above QR code.`,
+      text: `Send payment of ₹${buyData?.amount} to above UPI ID.`,
       input: "text",
       title: `UPI ID: ${buyData?.upiId || ""}`,
       inputLabel: "Enter refral code",
