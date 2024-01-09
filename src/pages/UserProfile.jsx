@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react-hooks/rules-of-hooks */
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -243,12 +244,14 @@ function UserProfile() {
 
 
                         </div>
+
                     </div>
 
 
                 </div>
             </div>
         </div>
+
     )
 }
 

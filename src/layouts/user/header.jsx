@@ -3,7 +3,6 @@
 /* eslint-disable react/button-has-type */
 import * as React from 'react';
 import Cookies from 'js-cookie';
-import { TbLogout } from "react-icons/tb";
 import { Link, useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
@@ -65,7 +64,7 @@ function ResponsiveAppBar() {
             }}
           >
             <Link to="/" style={{ color: "white" }}>
-              <img src='/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
+              Home
 
             </Link>
           </Typography>
@@ -137,10 +136,10 @@ function ResponsiveAppBar() {
             <Tooltip title="My Account">
               <IconButton sx={{ p: 0 }}>
                 {/* <Avatar /> */}
-                <Link to="/profile"> <button className="btn btn-primary" >MyAccount</button></Link>
+                <Link to="/profile"> <button className="btn btn-primary" style={{ backgroundColor: "blueviolet", color: "white", border: "1px solid blueviolet" }} >MyAccount</button></Link>
               </IconButton>
             </Tooltip>
-            <button className='btn btn-danger mx-2' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={handleAvatarOptionClick}> <TbLogout /></button>
+            <button className='btn btn-danger mx-2' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={handleAvatarOptionClick}> Logout</button>
             {isAdmin && <button className='btn btn-danger' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={() => navigate('/admin')}>Admin</button>}
           </Box>
         </Toolbar>

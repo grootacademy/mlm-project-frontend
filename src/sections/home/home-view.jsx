@@ -79,16 +79,16 @@ export default function HomeView() {
       >
         <div className="container pt-5 text-center">
           <div className="row">
-            <div className="col-12">
+            <div className="col-12 mb-5 ">
               {/* <div className="img-mask mask-2  mt-5"> */}
               <img className='rounded-pill' style={{ height: "150px" }} src='\assets\images\Images\Profile-Avatar-PNG.png' alt="" />
               {/* </div> */}
-              <marquee> <h5 className='font-weight-bold'>Daily get 300% return of your investment with in 24 hours & being a part of our dolphin's family</h5></marquee>
+              {/* <marquee> <h5 className='font-weight-bold'>Daily get 300% return of your investment with in 24 hours & being a part of our dolphin's family</h5></marquee>
               <p className='text-secondary fw-lighter mb-0'>Our next setup will be organise on 11th january in Indonesia.</p>
               <p className='text-secondary'>Lucky members are daily awarded with extra additional bonus.</p>
 
               <h5 className='font-weight-bold'>Members of singapure doing well</h5>
-              <p className='text-secondary fw-lighter '>All the members of our family from singapure getting 400% return of there investment.</p>
+              <p className='text-secondary fw-lighter '>All the members of our family from singapure getting 400% return of there investment.</p> */}
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@ export default function HomeView() {
         <Container>
 
           <Grid container spacing={3} alignItems="start">
-            <Grid xs={12} sm={6} md={2} >
+            <Grid xs={12} sm={6} md={3} >
               <AppWidgetSummary
                 title="Wallet"
                 total={wallet?.amount || 0}
@@ -142,7 +142,9 @@ export default function HomeView() {
             </Grid> */}
           </Grid>
 
-          <Grid container spacing={3}>
+
+          <Grid container spacing={5}>
+
             <Grid xs={12} sm={6} md={6}>
               <Link to='/membershipProducts'>
                 <AppWidgetSummary

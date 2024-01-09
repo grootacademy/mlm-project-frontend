@@ -14,6 +14,8 @@ const AdminAddProduct = () => {
     const [amount, setAmount] = useState(null)
     const [name, setName] = useState("")
     const [upiId, setUpiId] = useState("")
+    const [description, setDescription] = useState("")
+
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -39,7 +41,8 @@ const AdminAddProduct = () => {
             const product = {
                 name,
                 amount,
-                upiId
+                upiId,
+                description
             }
 
             if (location.state?.product) {
@@ -100,6 +103,11 @@ const AdminAddProduct = () => {
                         <div className="form-group mt-2">
                             <label htmlFor="upiId" style={{ fontSize: "12px" }}>UPI Id</label>
                             <input type="text" value={upiId} onChange={e => setUpiId(e.target.value)} className="form-control" id="upiId" placeholder="UPI id" />
+                        </div>
+                        <div className="form-group mt-2">
+                            <label htmlFor="description" style={{ fontSize: "12px" }}>description</label>
+                            <textarea value={description} onChange={e => setDescription(e.target.value)} className="form-control" id="upiId" placeholder="Description" />
+
                         </div>
 
                         <Button type="submit" color='success' variant='contained' className="mt-2" onClick={handleSubmit}>{location.state?.product ? "Update" : "Add"}</Button>
