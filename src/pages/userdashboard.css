@@ -1,0 +1,185 @@
+.bg-img-profile {
+    background-image: url(https://i.ibb.co/bvV4KSC/scenic-view-of-full-moon-in-cloudy-sky-during-dusk-royalty-free-image-1573243968.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 10px 20px 0;
+    border-radius: 1px;
+}
+
+.row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.wallet-card {
+    background: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.09);
+    border-radius: 10px;
+    padding: 20px 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.wallet-card .balance {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    height: 100px;
+}
+
+.wallet-card .balance .left {
+    padding-right: 10px;
+}
+
+.wallet-card .balance .title {
+    color: #27173E;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.wallet-card .balance .total {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1em;
+    font-size: 32px;
+    color: #7431fa;
+}
+
+.wallet-card .balance .right {
+    padding: 0;
+}
+
+.wallet-card .wallet-footer {
+    border-top: 1px solid #DCDCE9;
+    padding-top: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.wallet-card .wallet-footer .item {
+    flex: 1;
+    text-align: center;
+}
+
+.wallet-card .wallet-footer .item a {
+    display: block;
+}
+
+.wallet-card .wallet-footer .item .icon-wrapper {
+
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 14px;
+}
+
+.wallet-card .wallet-footer .item strong {
+    display: block;
+    color: #27173E;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 1.2em;
+}
+
+.stat-box {
+    background: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.09);
+    border-radius: 10px;
+    padding: 20px 24px;
+}
+
+.stat-box .title {
+    font-size: 13px;
+    color: #958d9e;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+    line-height: 1.4em;
+}
+
+
+
+.listview {
+    display: block;
+    padding: 0;
+    margin: 0;
+    color: #27173E;
+    background: #fff;
+    border-top: 1px solid #DCDCE9;
+    border-bottom: 1px solid #DCDCE9;
+    line-height: 1.3em;
+}
+
+.listview>li {
+    padding: 11px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    min-height: 50px;
+}
+
+.image-listview>li .item {
+    padding: 11px 16px;
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.image-listview>li a.item {
+    color: #27173E !important;
+    padding-right: 36px;
+}
+
+a {
+    color: #0d6efd;
+    outline: 0 !important;
+    text-decoration: none;
+}
+
+.bg-primary {
+    background-image: linear-gradient(to bottom right, #7431fa, #4711b5) !important;
+    color: #FFF;
+}
+
+.image-listview>li .item .icon-box {
+    min-width: 46px;
+    max-width: 46px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1em;
+    font-size: 22px;
+    border-radius: 400px;
+    margin-right: 16px;
+}
+
+.image-listview>li a.item:after {
+
+    content: "";
+    background-image: url(./icons8-right-arrow-96.png);
+    background-size: 100% 100%;
+    display: inline-block;
+
+
+    height: 20px;
+    width: 20px;
+
+    position: absolute;
+    right: 16px;
+
+    opacity: 0.8;
+
+}

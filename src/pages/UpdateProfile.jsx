@@ -59,7 +59,7 @@ const UpdateProfile = () => {
 
         <div>
             <div >
-                <h5 className='text-center register mt-5'>Login Now</h5>
+                <h5 className='text-center register mt-5'>Update Profile</h5>
                 <div className='signupBox d-flex justify-content-center flex-wrap align-items-center ' >
                     <form className='signusform' >
                         <div className='row'>

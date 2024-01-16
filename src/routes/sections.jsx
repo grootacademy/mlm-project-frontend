@@ -6,6 +6,8 @@ import DashboardLayout from 'src/layouts/dashboard';
 import AdminUserList from 'src/pages/AdminUserList';
 import AdminAddProduct from 'src/pages/AdminAddProduct';
 import AdminProductList from 'src/pages/AdminProductList';
+// eslint-disable-next-line import/no-cycle
+import UpdateBankDetails from 'src/pages/UpdateBankDetails';
 import AdminWithdrawalsPage from 'src/pages/AdminWithdrawals';
 import DepositHistoryPage from 'src/pages/DepositHistoryPage';
 import WithDrawalHistoryPage from 'src/pages/WithdrawalHistoryPage';
@@ -20,8 +22,15 @@ export const LoginPage = lazy(() => import('src/pages/login'));
 export const RegisterPage = lazy(() => import('src/pages/register'));
 export const HomePage = lazy(() => import('src/pages/Home'));
 export const MembershipProducts = lazy(() => import('src/pages/MembershipProducts'));
+// eslint-disable-next-line import/no-cycle
 export const UserProfile = lazy(() => import('src/pages/UserProfile'));
+// eslint-disable-next-line import/no-cycle
+export const BankDetails = lazy(() => import('src/pages/BankDetails'));
+export const updateBankDetails = lazy(() => import('src/pages/UpdateBankDetails'));
+
 export const UpdateProfile = lazy(() => import('src/pages/UpdateProfile'));
+export const UserDashboard = lazy(() => import('src/pages/UserDashboard'));
+
 
 export const WithdrawalAmount = lazy(() => import('src/pages/WithdrawalAmount'));
 
@@ -72,6 +81,12 @@ export default function Router() {
         { path: 'membershipProducts', element: <MembershipProducts /> },
         { path: 'myMemberships', element: <MyMemberships /> },
         { path: 'profile', element: <UserProfile /> },
+        { path: 'bankDetails', element: <BankDetails /> },
+        { path: 'updateBankDetails', element: <UpdateBankDetails /> },
+        { path: 'userDashboard', element: <UserDashboard /> },
+
+
+
         { path: 'updateProfile', element: <UpdateProfile /> },
 
         { path: 'WithdrawalAmount', element: <WithdrawalAmount /> },

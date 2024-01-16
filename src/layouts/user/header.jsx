@@ -133,10 +133,10 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }} alignItems="center">
-            <Tooltip title="My Account">
+            <Tooltip >
               <IconButton sx={{ p: 0 }}>
                 {/* <Avatar /> */}
-                <Link to="/profile"> <button className="btn btn-primary" style={{ backgroundColor: "blueviolet", color: "white", border: "1px solid blueviolet" }} >MyAccount</button></Link>
+                <Link to="/userDashboard"> <button className="btn btn-primary" style={{ backgroundColor: "blueviolet", color: "white", border: "1px solid blueviolet" }} >Profile</button></Link>
               </IconButton>
             </Tooltip>
             <button className='btn btn-danger mx-2' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={handleAvatarOptionClick}> Logout</button>

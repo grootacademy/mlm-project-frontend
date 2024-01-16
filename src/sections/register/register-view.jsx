@@ -106,10 +106,6 @@ export default function RegisterView() {
 
     e.preventDefault();
     console.log(formData);
-
-    // if (validateForm()) {
-    // Perform registration logic here (e.g., send data to the server)
-
     try {
 
       if (formData.password !== formData.confirmPassword) {

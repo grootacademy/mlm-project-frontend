@@ -117,7 +117,7 @@ export default function MembershipProductsView() {
     Swal.fire({
       title: "Product Description",
       html: `<p style="font-size:14px">${description}</p>`,
-      showConfirmButton: false
+      showConfirmButton: true,
     })
   }
 
