@@ -7,8 +7,7 @@ import { useState, useEffect } from "react";
 import { BaseUrl } from "src/Base_url";
 
 import "./style.css";
-import "./userdashboard.css"
-import toast from "react-hot-toast";
+import "./userdashboard.css";
 
 function UserDashboard() {
 
