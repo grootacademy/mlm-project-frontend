@@ -9,6 +9,7 @@ import { Button } from '@mui/material';
 
 import Nav from './nav';
 import Main from './main';
+import Header from './header';
 // import Header from '../user/header';
 // import Header from './header';
 
@@ -36,7 +37,7 @@ export default function DashboardLayout({ children }) {
 
   return (
     <>
-      {/* <Header onOpenNav={() => setOpenNav(true)} /> */}
+      <Header onOpenNav={() => setOpenNav(true)} />
 
       <Box
         sx={{
@@ -48,7 +49,7 @@ export default function DashboardLayout({ children }) {
         <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} />
 
         <Main>
-          <div className='d-flex justify-content-end '>
+          <div className='d-flex justify-content-end'>
             <Button variant='outlined' onClick={handleLogout}> <TbLogout size="25" /></Button>
             <Button variant='outlined' onClick={() => navigate('/userDashboard')} className='mx-1'> user Dashboard</Button>
           </div>
