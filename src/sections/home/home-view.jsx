@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable jsx-a11y/no-distracting-elements */
 /* eslint-disable react/no-unescaped-entities */
-
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
@@ -53,6 +52,7 @@ export default function HomeView() {
     })
   }
 
+
   const getWallet = async () => {
     try {
       const { data } = await axios.get(`${BaseUrl}getuserWallet`, { headers: { 'Authorization': Cookies.get("token") } })
@@ -81,7 +81,40 @@ export default function HomeView() {
       fontSize: '10px', // Font size for screen size between 300px and 500px
     },
   };
+  const [userData, setUserData] = useState();
+  // const [accountData, setAccountData] = useState()
 
+  useEffect(() => {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': Cookies.get("token")
+    };
+
+    axios.get(`${BaseUrl}user/profile`, { headers })
+      .then(response => {
+        setUserData(response.data);
+
+      })
+      .catch(error => {
+        // Handle error
+        console.error('Error fetching user details:', error);
+      });
+
+
+    // axios.get(`${BaseUrl}getAccount`, { headers })
+    //   .then(response => {
+    //     setAccountData(response.data.data[0]);
+    //     console.log(response.data);
+
+
+    //   })
+    //   .catch(error => {
+    //     // Handle error
+    //     console.error('Error fetching user details:', error);
+    //   });
+
+
+  }, []);
 
   return (
     <div>
@@ -99,6 +132,10 @@ export default function HomeView() {
             <div className="col-12 mb-5 ">
               {/* <div className="img-mask mask-2  mt-5"> */}
               <img className='rounded-pill' style={{ height: "150px" }} src='\assets\images\Images\Profile-Avatar-PNG.png' alt="" />
+              <h2>
+                {userData?.data?.name ? userData.data.name.charAt(0).toUpperCase() + userData.data.name.slice(1) : ''}
+
+              </h2>
               {/* </div> */}
               {/* <marquee> <h5 className='font-weight-bold'>Daily get 300% return of your investment with in 24 hours & being a part of our dolphin's family</h5></marquee>
               <p className='text-secondary fw-lighter mb-0'>Our next setup will be organise on 11th january in Indonesia.</p>
@@ -163,31 +200,36 @@ export default function HomeView() {
 
           <Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>
 
-            <Grid xs={6} sm={6} md={6}>
+            <Grid xs={6} sm={6} md={6}
+            >
               <Link to='/membershipProducts'>
                 <AppWidgetSummary
                   title="Let's take a look at all products."
                   total="Membership Plans"
                   color="success"
-                  icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+                  icon={<img alt="icon" src="/assets/Homeicon/a.png" />}
                 />
               </Link>
             </Grid>
 
-            <Grid xs={6} sm={6} md={6} onClick={handleInviteFriend}>
+            <Grid xs={6} sm={6} md={6} onClick={handleInviteFriend}
+
+            >
 
               {/* <Link to="/myMemberships"> */}
               <AppWidgetSummary
                 title="Refer your friend and earn a lot"
                 total="Refer a Friend"
                 color="info"
-                icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
+                icon={<img alt="icon" src="/assets/Homeicon/b.png" />}
               />
               {/* </Link> */}
 
             </Grid>
 
-            <Grid xs={6} sm={6} md={6} >
+            <Grid xs={6} sm={6} md={6}
+
+            >
 
               <a href="https://telegram.com" target='_blank' rel="noreferrer">
 
@@ -195,21 +237,24 @@ export default function HomeView() {
                   title="Invite your friends to join with us"
                   total="Customer support"
                   color="warning"
-                  icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
+                  icon={<img alt="icon" src="/assets/Homeicon/d.png" />}
                 />
 
               </a>
             </Grid>
 
-            <Grid xs={6} sm={6} md={6}>
+            <Grid xs={6} sm={6} md={6}
+
+            >
               <Link to="/myMemberships">
                 <AppWidgetSummary
                   title="Let's see your all membersips that you have purchased"
                   total="My Memberships"
                   color="error"
-                  icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
+                  icon={<img alt="icon" src="/assets/Homeicon/c.png" />}
                 />
               </Link>
+
             </Grid>
 
           </Grid>

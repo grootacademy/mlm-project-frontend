@@ -42,6 +42,11 @@ const AdminProductList = () => {
             sortable: true,
         },
         {
+            name: 'Description',
+            selector: row => <div style={{ width: "200px", height: "50px", overflow: "auto" }}>{row?.description}</div>,
+            sortable: true,
+        },
+        {
             name: 'Created On',
             selector: row => formatDate(row?.createdAt),
             sortable: true,

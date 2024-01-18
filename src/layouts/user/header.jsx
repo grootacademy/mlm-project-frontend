@@ -43,108 +43,113 @@ function ResponsiveAppBar() {
   const isAdmin = Cookies.get("role") === "admin";
 
   return (
-    <AppBar position="sticky" sx={{
-      background: "linear-gradient(to left, #b8a1e5, #5206ea)",
-      zIndex: 1000
-    }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <Link to="/" style={{ color: "white" }}>
-              Home
+    <div style={{ position: "sticky", top: "0px", zIndex: 1000, }}>
+      <AppBar sx={{
+        background: "linear-gradient(to left, #b8a1e5, #5206ea)",
 
-            </Link>
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+      }}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
               sx={{
-                display: { xs: 'block', md: 'none' },
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page.label} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.label}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <img src='/assets/logo.png' width={50} style={{ borderRadius: "10px" }} />
+              <Link to="/" style={{ color: "white" }}>
+                Home
 
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-
-              <Link to={page.path} key={page.label}>
-
-                <Button
-
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  {page.label}
-                </Button>
               </Link>
-            ))}
-          </Box>
+            </Typography>
 
-          <Box sx={{ flexGrow: 0 }} alignItems="center">
-            <Tooltip >
-              <IconButton sx={{ p: 0 }}>
-                {/* <Avatar /> */}
-                <Link to="/userDashboard"> <button className="btn btn-primary" style={{ backgroundColor: "blueviolet", color: "white", border: "1px solid blueviolet" }} >Profile</button></Link>
-              </IconButton>
-            </Tooltip>
-            <button className='btn btn-danger mx-2' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={handleAvatarOptionClick}> Logout</button>
-            {isAdmin && <button className='btn btn-danger' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={() => navigate('/admin')}>Admin</button>}
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar >
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page.label}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+                Home
+
+              </Link>
+
+            </Typography>
+
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {pages.map((page) => (
+
+                <Link to={page.path} key={page.label}>
+
+                  <Button
+
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                  >
+                    {page.label}
+                  </Button>
+                </Link>
+              ))}
+            </Box>
+
+            <Box sx={{ flexGrow: 0 }} alignItems="center">
+              <Tooltip >
+                <IconButton sx={{ p: 0 }}>
+                  {/* <Avatar /> */}
+                  <Link to="/userDashboard"> <button className="btn btn-primary" style={{ backgroundColor: "blueviolet", color: "white", border: "1px solid blueviolet" }} >Profile</button></Link>
+                </IconButton>
+              </Tooltip>
+              <button className='btn btn-danger mx-2' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={handleAvatarOptionClick}> Logout</button>
+              {isAdmin && <button className='btn btn-danger' style={{ backgroundColor: "white", color: "blueviolet", border: "1px solid blueviolet" }} onClick={() => navigate('/admin')}>Admin</button>}
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar >
+    </div>
   );
 }
 export default ResponsiveAppBar;

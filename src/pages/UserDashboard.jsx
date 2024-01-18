@@ -8,7 +8,6 @@ import { BaseUrl } from "src/Base_url";
 
 import "./style.css";
 import "./userdashboard.css"
-import toast from "react-hot-toast";
 
 function UserDashboard() {
 
@@ -182,18 +181,18 @@ function UserDashboard() {
                         </div>
                     </div>
                     <div className="row mt-2">
-                        <div className="col-6">
+                        {/* <div className="col-6">
                             <div className="stat-box">
                                 <div className="title">Complete</div>
                                 <h2 className="">0 Task</h2>
                             </div>
-                        </div>
-                        <div className="col-6">
+                        </div> */}
+                        {/* <div className="col-6">
                             <div className="stat-box">
                                 <div className="title">Remain</div>
                                 <h2 className="">0 Task</h2>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
@@ -285,19 +284,22 @@ function UserDashboard() {
                 <div className="container">
                     <div style={{ backgroundColor: "rgb(255, 255, 255);" }} className="rounded mt-2">
 
-                        {/* <!--<div className="listview-title mt-1">Menu</div>--> */}
 
 
                         <ul className="listview flush transparent no-line image-listview">
+
+
                             <li>
-                                <a href="#" className="item">
+
+                                <Link to="/myMemberships" className="item">
                                     <div className="icon-box bg-primary">
-                                        <img style={{ width: "1.5rem;" }} src="assets/profileImg/people.png" alt="" />
+                                        <img style={{ width: "1.5rem;" }} src="assets/profileImg/people.png" alt="" className="imagedashboard" />
                                     </div>
                                     <div className="in">
-                                        My Team
+                                        My Memberships
                                     </div>
-                                </a>
+                                </Link>
+
                             </li>
 
                             <li>
@@ -305,6 +307,7 @@ function UserDashboard() {
                                     <div className="icon-box bg-primary">
                                         <img style={{ width: "1.5rem;" }} src="assets/profileImg/cloud downlode.png" alt="" />
                                     </div>
+
                                     <div className="in">
                                         Install Software
                                     </div>

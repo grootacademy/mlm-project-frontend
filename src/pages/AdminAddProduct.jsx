@@ -77,6 +77,8 @@ const AdminAddProduct = () => {
             setAmount(location.state.product?.amount)
             setName(location.state.product?.name)
             setUpiId(location.state.product?.upiId)
+            setDescription(location.state.product?.description)
+
         }
 
     }, [location.state?.product])
@@ -106,7 +108,7 @@ const AdminAddProduct = () => {
                         </div>
                         <div className="form-group mt-2">
                             <label htmlFor="description" style={{ fontSize: "12px" }}>description</label>
-                            <textarea value={description} onChange={e => setDescription(e.target.value)} className="form-control" id="upiId" placeholder="Description" />
+                            <textarea value={description} onChange={e => setDescription(e.target.value)} className="form-control" id="description" placeholder="Description" />
 
                         </div>
 

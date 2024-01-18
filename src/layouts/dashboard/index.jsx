@@ -50,7 +50,7 @@ export default function DashboardLayout({ children }) {
         <Main>
           <div className='d-flex justify-content-end '>
             <Button variant='outlined' onClick={handleLogout}> <TbLogout size="25" /></Button>
-            <Button variant='outlined' onClick={() => navigate('/profile')} className='mx-1'> User Profile</Button>
+            <Button variant='outlined' onClick={() => navigate('/userDashboard')} className='mx-1'> user Dashboard</Button>
           </div>
 
           <div>
