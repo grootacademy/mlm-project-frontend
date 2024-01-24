@@ -11,6 +11,8 @@ import UpdateBankDetails from 'src/pages/UpdateBankDetails';
 import AdminWithdrawalsPage from 'src/pages/AdminWithdrawals';
 import DepositHistoryPage from 'src/pages/DepositHistoryPage';
 import WithDrawalHistoryPage from 'src/pages/WithdrawalHistoryPage';
+import AdminUserMembershipList from 'src/pages/AdminUserMembershipList';
+import AdminUserMembershipDetails from 'src/pages/AdminUserMembershipDetails';
 
 import PublicRoute from 'src/components/PublicRoute';
 import PrivateRoute from 'src/components/PrivateRoute';
@@ -18,6 +20,7 @@ import PrivateRoute from 'src/components/PrivateRoute';
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
 export const AdminMembershipsPage = lazy(() => import('src/pages/AdminMemberships'));
+
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const RegisterPage = lazy(() => import('src/pages/register'));
 export const HomePage = lazy(() => import('src/pages/Home'));
@@ -62,6 +65,9 @@ export default function Router() {
         { path: 'userList', element: <AdminUserList /> },
         { path: 'productList', element: <AdminProductList /> },
         { path: 'addProduct', element: <AdminAddProduct /> },
+        { path: 'adminUserMembershipList', element: <AdminUserMembershipList /> },
+        { path: 'adminUserMembershipDetails', element: <AdminUserMembershipDetails /> },
+
         // { path: 'products', element: <ProductsPage /> },
         // { path: 'blog', element: <BlogPage /> },
       ],
@@ -84,6 +90,9 @@ export default function Router() {
         { path: 'bankDetails', element: <BankDetails /> },
         { path: 'updateBankDetails', element: <UpdateBankDetails /> },
         { path: 'userDashboard', element: <UserDashboard /> },
+        { path: 'adminAddProduct', element: <AdminAddProduct /> },
+
+
 
 
 
